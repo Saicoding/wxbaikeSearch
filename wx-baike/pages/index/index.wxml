@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<view class="container">
+  <sc-view sc-class="flex item-container" wx:for="{{list}}" wx:key="id" >
+    <view  class="item c overline" bindtap="GOurl" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
+    <view class="flex vc hc" style="height:80rpx;width:80rpx;">
+      <image style="width:40rpx;height:40rpx;" src="/imgs/more.png"></image>
+    </view>
+  </sc-view>
+</view>

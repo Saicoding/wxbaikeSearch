@@ -1,0 +1,10 @@
+/**index.wxss**/
+.item{
+  width:670rpx;
+  line-height:80rpx;
+  height:80rpx;
+}
+
+.item-container{
+  border-bottom:1rpx solid #e6e6e6;
+}

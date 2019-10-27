@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "sc-view":"/utils/dist/components/scView/sc-view"
+  }
+}
