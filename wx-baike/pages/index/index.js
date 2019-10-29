@@ -129,6 +129,7 @@ Page({
     app.request({
       data: params
     }).then(res => {
+      console.log(res)
       // 新请求的列表
       let newList = res.Data;
 
@@ -148,7 +149,7 @@ Page({
  
 
       list.map(item=>{
-        item.shortTime = item.time.substring(5,16);
+        item.shortTime = item.ctime.substring(5,16);
 
         item.view = viewIdArray.indexOf(item.num*1) != -1
       })

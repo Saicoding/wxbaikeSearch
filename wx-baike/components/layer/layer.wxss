@@ -22,7 +22,7 @@
 }
 
 .item{
-  width:490rpx;
+  width:570rpx;
   height:70rpx;
   line-height:70rpx;
   border-bottom:1rpx solid rgba(230, 230, 230,0.5);

@@ -1,1 +1,1 @@
-SELECT `*` FROM `baike` WHERE  ORDER BY `id` DESC LIMIT 30, 30 \n
+SELECT `*` FROM `baike` WHERE STR_TO_DATE(time, '%Y-%m-%d %H:%i') > STR_TO_DATE('2019-10-01 00:00:00', '%Y-%m-%d %H:%i') and STR_TO_DATE(time, '%Y-%m-%d %H:%i') < STR_TO_DATE('2019-10-29 00:00:00', '%Y-%m-%d %H:%i') and edit_num >=1 ORDER BY `id` DESC LIMIT 0, 30 \n

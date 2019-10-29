@@ -32,12 +32,12 @@ App({
 
       if (data.WhereObj.StartDate){
         Where = Where != 'WHERE ' ? Where +" and " : Where;
-        Where = Where + "STR_TO_DATE(time, '%Y-%m-%d %H:%i') > STR_TO_DATE('" + data.WhereObj.StartDate+"', '%Y-%m-%d %H:%i')";
+        Where = Where + "STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') > STR_TO_DATE('" + data.WhereObj.StartDate+"', '%Y-%m-%d %H:%i')";
       }
 
       if (data.WhereObj.EndDate) {
         Where = Where != 'WHERE ' ? Where +" and " : Where;
-        Where = Where + "STR_TO_DATE(time, '%Y-%m-%d %H:%i') < STR_TO_DATE('" + data.WhereObj.EndDate + "', '%Y-%m-%d %H:%i')";
+        Where = Where + "STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') < STR_TO_DATE('" + data.WhereObj.EndDate + "', '%Y-%m-%d %H:%i')";
       }
 
       if (data.WhereObj.Edit_num) {
