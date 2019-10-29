@@ -1,9 +1,65 @@
 <!--index.wxml-->
 <view class="container">
-  <sc-view sc-class="flex item-container" wx:for="{{list}}" wx:key="id" >
-    <view  class="item c overline" bindtap="GOurl" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
-    <view class="flex vc hc" style="height:80rpx;width:80rpx;">
-      <image style="width:40rpx;height:40rpx;" src="/imgs/more.png"></image>
+  <!-- 筛选条件框 -->
+  <view class="filter">
+    <view class="flex  f28" style="height:70rpx;line-height:70rpx;">
+      <!-- 起始查询时间 -->
+      <view class="flex-c hc" style="width:375rpx;">
+        <picker value="{{startValue}}" mode='date' start="{{STARTTIME}}" end="{{ENDTIME}}" bindchange="startDateChange">
+          <view class="c">
+            起始时间：{{startValue}}
+          </view>
+        </picker>
+      </view>
+      <view class="flex-c hc" style="width:375rpx;height:70rpx;">
+        <picker value="{{endValue}}" mode='date' start="{{STARTTIME}}" end="{{ENDTIME}}" bindchange="endDateChange">
+          <view class="c">
+            结束时间：{{endValue}}
+          </view>
+        </picker>
+      </view>
     </view>
-  </sc-view>
+  </view>
+
+  <view style="height:70rpx;"></view>
+
+
+  <view class="flex-b f26 b bar">
+    <view style="width:490rpx;padding-left:30rpx;">词条名称</view>
+    <view class="flex" style="width:230rpx;">
+      <view class="c" style="width:150rpx;">时间</view>
+      <view class="c" style="width:80rpx;">
+        <picker value="{{edit_value}}"  range="{{num_array}}" bindchange="editNumChange">
+          <view class="c">
+            次数{{edit_value*1+1}}
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="flex item-container f24" wx:for="{{list}}" wx:key="id*1" style="background:{{item.view?'rgb(255, 153, 0)':'rgb(240, 240, 240)'}};" hover-class="select1">
+    <view data-index="{{index}}" class="item overline" bindtap="GOurl" catchlongpress="showLayer" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
+    <view class="flex vc hc" style="height:80rpx;width:230rpx;">
+      <view class="c" style="width:150rpx;">{{item.shortTime}}</view>
+      <view class="c" style="width:80rpx;">{{item.edit_num}}</view>
+    </view>
+  </view>
 </view>
+
+<!-- 缺醒图 -->
+<view wx:if="{{list.length == 0 && !loading}}" class="c" style="padding-bottom:100rpx;">
+  <image style="display:block;width:215rpx;height:252rpx;margin:0 auto;margin-top:150rpx;" src="/imgs/hasno.png"></image>
+  <view class="f22 c3" style="margin-top:50rpx;">没有找到相关内容...</view>
+</view>
+
+<!-- 上拉加载更多的图标 -->
+<view wx:if="{{loading && list.length > 0}}" class="loading">
+  <image class="loading-img" src="/imgs/upLoad.gif"></image>
+  <view>加载中 ...</view>
+</view>
+
+<!-- 没有更多 -->
+<view class="hasNoMore c" wx:if="{{hasNoMore}}">已全部加载完毕</view>
+
+<layer id="layer" show="{{showLayer}}" item="{{item}}" windowHeight="{{windowHeight}}"></layer>

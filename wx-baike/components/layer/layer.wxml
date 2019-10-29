@@ -1,0 +1,32 @@
+<!--components/layer/layer.wxml-->
+<view wx:if="{{show}}" class="model" catchtap="hide">
+  <view class="content" catchtap="undo" style="top:{{(windowHeight-600)/2}}rpx;">
+    <view>
+      <image src="/"></image>
+    </view>
+    <view class="flex item overline">
+      <view>词条名称：</view>
+      <view>{{item.name}}</view>
+    </view>
+    <view class="flex item">
+      <view>编辑时间：</view>
+      <view>{{item.time}}</view>
+    </view>
+    <view class="flex item">
+      <view>用户名称：</view>
+      <view>{{item.uname}}</view>
+    </view>
+    <view class="flex item overline">
+      <view>编辑原因：</view>
+      <view>{{item.reson}}</view>
+    </view>
+    <view class="flex item">
+      <view>编辑次数：</view>
+      <view>{{item.edit_num}}</view>
+    </view>
+    <view class="flex item">
+      <view>词条编号：</view>
+      <view>{{item.num}}</view>
+    </view>
+  </view>
+</view>

@@ -1,10 +1,37 @@
 /**index.wxss**/
-.item{
-  width:670rpx;
+page{
+  background: rgb(240, 240, 240);
+}
+
+.bar,.item{
   line-height:80rpx;
   height:80rpx;
 }
 
+.bar{
+  width:750rpx;
+  background: rgb(216, 216, 216);
+  border-bottom:1rpx solid #e6e6e6;
+}
+
+.item{
+  padding-left:30rpx;
+  width:490rpx;
+}
+
 .item-container{
   border-bottom:1rpx solid #e6e6e6;
+}
+
+.filter{
+  width:100%;
+  position:fixed;
+  top:0rpx;
+  background: rgb(253, 139, 46);
+  color:white;
+
+}
+
+.select1{
+  background: rgba(61, 61, 61,0.3);
 }

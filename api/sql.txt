@@ -1,1 +1,1 @@
-SELECT `*` FROM `baike` WHERE name regexp '爱|在|狂' LIMIT 0, 100 ORDER BY `id` DESC \n
+SELECT `*` FROM `baike` WHERE  ORDER BY `id` DESC LIMIT 30, 30 \n

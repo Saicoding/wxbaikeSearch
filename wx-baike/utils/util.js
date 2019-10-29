@@ -1,19 +1,16 @@
-const formatTime = date => {
-  const year = date.getFullYear()
-  const month = date.getMonth() + 1
-  const day = date.getDate()
-  const hour = date.getHours()
-  const minute = date.getMinutes()
-  const second = date.getSeconds()
+function getCurrentDate(){
+  let mydate = new Date();
+  let y = mydate.getFullYear();
+  let m = mydate.getMonth()+1;
+  m = m < 10?'0'+m:m
 
-  return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
-}
+  let d = mydate.getDate(); //获取当前日(1-31)
+  d = d <10?'0'+d:d;
 
-const formatNumber = n => {
-  n = n.toString()
-  return n[1] ? n : '0' + n
+  let date = y+'-'+m+'-'+d;
+  return date
 }
 
 module.exports = {
-  formatTime: formatTime
+  getCurrentDate
 }
