@@ -35,6 +35,17 @@ Component({
       })
     },
 
+    /**
+     * 导航到参考资料
+     */
+    GOurl:function(e){
+      let url = e.currentTarget.dataset.url;
+
+      wx.navigateTo({
+        url:'/pages/web-view/web-view?src='+url
+      })
+    },
+
     undo:function(){
       return
     }

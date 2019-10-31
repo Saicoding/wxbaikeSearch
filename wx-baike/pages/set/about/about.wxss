@@ -1,0 +1,10 @@
+/* pages/set/about/about.wxss */
+.text{
+  font-size:25rpx;
+  color:#666;
+  width:690rpx;
+  padding:30rpx;
+  line-height:50rpx;
+  text-indent: 50rpx;
+  margin-top:40rpx;
+}

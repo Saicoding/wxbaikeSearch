@@ -1,0 +1,48 @@
+<!--pages/mine/set/set.wxml-->
+<view class="container">
+  <!-- 块级单元，包含两行 -->
+  <view class="block f28 c1">
+    <sc-view bindtap="showDialog" sc-class="item" >
+      <view class="flex-b bb">
+        <view>清除缓存</view>
+        <image class="item-icon" src="/imgs/right.png"></image>
+      </view>
+    </sc-view>
+
+    <sc-view bindtap="GOabout" sc-class="item" >
+      <view class="flex-b bb">
+        <view>关于百度百科</view>
+        <image class="item-icon" src="/imgs/right.png"></image>
+      </view>
+    </sc-view>
+  </view>
+
+  <!-- 退出当前账号 -->
+  <sc-view  bindtap="loginout" sc-class="bottom1 c f28 c4">
+    <button open-type="contact" class="btn" bindcontact="contact">联系我们</button>
+  </sc-view>
+</view>
+
+
+<!-- 点击清除后 -->
+<view wx:if="{{showClear}}" class="clear-dialog" catchtap="toogleShowClearDialog">
+  <view class="dialog-content" catchtap="undo" style="top:{{(windowHeight-300)/2}}rpx;">
+    <view class="f28 c1 c" style="height:80rpx;line-height:80rpx;">选择要清除的类型</view>
+
+    <view data-type="1" bindtap="changeClearType" class="dialog-content-item flex">
+      <image class="dialog-content-item-icon" src="{{clearType == 1?'/imgs/select.png':'/imgs/circle.png'}}"></image>
+      <view style="margin-left:16rpx;">清除所有已收藏和浏览数据</view>
+    </view>
+
+    <view data-type="2" bindtap="changeClearType" class="dialog-content-item flex" style="margin-top:30rpx;">
+      <image class="dialog-content-item-icon" src="{{clearType == 2?'/imgs/select.png':'/imgs/circle.png'}}"></image>
+      <view style="margin-left:16rpx;">清除所有过滤条件</view>
+    </view>
+
+    <view class="dialog-content-bottom flex">
+      <sc-view bindtap="clearStorage" sc-class="dialog-content-bottom-item c4">清除</sc-view>
+      <view class="dialog-content-bottom-line"></view>
+      <view bindtap="cancel" class="dialog-content-bottom-item">取消</view>
+    </view>
+  </view>
+</view>

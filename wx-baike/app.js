@@ -8,28 +8,11 @@ App({
     let self = this;
     let url = this.globalData.url;
     let data = obj.data;
+    let reqData = {};
+    let Where = "WHERE ";
 
     // 处理where字符串
     if (data.WhereObj){
-      let Where = "WHERE ";
-
-      if (data.WhereObj.name){
-        let filterStr = data.WhereObj.name.join('|');
-        Where = Where + "name regexp '" + filterStr+"'"    
-      }
-
-      if (data.WhereObj.uname){
-        let filterStr = data.WhereObj.uname.join('|');
-        Where = Where != 'WHERE ' ? Where+" and " : Where;
-        Where = Where + "uname regexp '" + filterStr+"'"
-      }
-
-      if (data.WhereObj.reson) {
-        let filterStr = data.WhereObj.reson.join('|');
-        Where = Where != 'WHERE ' ? Where+" and " : Where;
-        Where = Where + "reson regexp '" + filterStr+"'"
-      }
-
       if (data.WhereObj.StartDate){
         Where = Where != 'WHERE ' ? Where +" and " : Where;
         Where = Where + "STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') > STR_TO_DATE('" + data.WhereObj.StartDate+"', '%Y-%m-%d %H:%i')";
@@ -45,22 +28,81 @@ App({
         Where = Where + "edit_num >=" + data.WhereObj.Edit_num;
       }
 
-      data.Where = Where;
+      // 词条类别
+      if (data.WhereObj.Type) {
+        let filterStr = data.WhereObj.Type.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "flag regexp '" + filterStr + "'"
+      }
 
-      console.log(Where)
+      // 词条名称过滤
+      if (data.WhereObj.NameFilter) {
+        let filterStr = data.WhereObj.NameFilter.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "name regexp '" + filterStr + "'"
+      }
 
+      // 词条名称屏蔽
+      if (data.WhereObj.NameBan) {
+        let filterStr = data.WhereObj.NameBan.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "name not regexp '" + filterStr + "'"
+      }
+
+      // 创建用户过滤
+      if (data.WhereObj.UserFilter) {
+        let filterStr = data.WhereObj.UserFilter.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "cname regexp '" + filterStr + "'"
+      }
+
+      // 创建用户屏蔽
+      if (data.WhereObj.UserBan) {
+        let filterStr = data.WhereObj.UserBan.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "cname not regexp '" + filterStr + "'"
+      }
+
+      // 参考资料过滤
+      if (data.WhereObj.ReferFilter) {
+        let filterStr = data.WhereObj.ReferFilter.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "refer regexp '" + filterStr + "'"
+      }
+
+      // 参考资料屏蔽
+      if (data.WhereObj.ReferBan) {
+        let filterStr = data.WhereObj.ReferBan.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "refer not regexp '" + filterStr + "'"
+      }
+
+      // 修改原因过滤
+      if (data.WhereObj.ReasonFilter) {
+        let filterStr = data.WhereObj.ReasonFilter.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "ereson regexp '" + filterStr + "'"
+      }
+
+      // 修改原因屏蔽
+      if (data.WhereObj.ReasonBan) {
+        let filterStr = data.WhereObj.ReasonBan.join('|');
+        Where = Where != 'WHERE ' ? Where + " and " : Where;
+        Where = Where + "ereson not regexp '" + filterStr + "'"
+      }
     }
+
+    reqData.PageIndex = data.PageIndex;
+    reqData.PageSize = data.PageSize;
+    reqData.Where = Where;
+
 
     let header = {
       'content-type': 'application/x-www-form-urlencoded'
     }
 
-    if (data == undefined) { //如果没设置data
-      data = {};
-    }
-
     if(obj.test){
-      console.log(data)
+      console.log(reqData)
     }
 
     let promise = new Promise((resolve, reject) => {
@@ -69,7 +111,7 @@ App({
       //网络请求
       wx.request({
         url,
-        data,
+        data: reqData,
         method: obj.method ? obj.method :'post',
         header,
         success: function(res) { //服务器返回数据

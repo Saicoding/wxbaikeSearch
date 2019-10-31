@@ -1,9 +1,9 @@
 <!--components/layer/layer.wxml-->
 <view wx:if="{{show}}" class="model" catchtap="hide">
   <view class="content" catchtap="undo" style="top:{{(windowHeight-1000)/2}}rpx;">
-    <view class="flex item overline">
+    <view class="flex item">
       <view>词条名称：</view>
-      <view>{{item.name}}</view>
+      <view class="overline" style="width:440rpx;">{{item.name}}</view>
     </view>
     <view class="flex item">
       <view>创建时间：</view>
@@ -29,7 +29,7 @@
     </view>
     <view wx:if="{{item.ereson !='创建词条'}}" class="flex item overline">
       <view>编辑原因：</view>
-      <view class="overline" style="width:420rpx;">{{item.ereson}}</view>
+      <view class="overline" style="width:440rpx;">{{item.ereson}}</view>
     </view>
     <view class="flex item">
       <view>编辑次数：</view>
@@ -44,9 +44,9 @@
       <view>参考来源：</view>
       <view>{{item.refer}}</view>
     </view>
-    <view wx:if="{{item.referUrl}}" class="flex item">
+    <view data-url="{{item.referUrl}}" wx:if="{{item.referUrl}}" class="flex item" bindtap="GOurl">
       <view>参考链接：</view>
-      <view class="overline" style="width:420rpx;">{{item.referUrl}}</view>
+      <view class="overline" style="width:440rpx;">{{item.referUrl}}</view>
     </view>
     <view wx:if="{{item.referDate}}" class="flex item">
       <view>参考时间：</view>
