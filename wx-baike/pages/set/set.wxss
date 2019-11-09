@@ -1,0 +1,92 @@
+/* pages/mine/set/set.wxss */
+.block{
+  border-bottom:20rpx solid #F8F9FA;
+}
+
+.item{
+  width:690rpx;
+  padding-left:30rpx;
+  padding-right:30rpx;
+  height:100rpx;
+  line-height:100rpx;
+}
+
+.item-icon{
+  width:30rpx;
+  height:30rpx;
+  margin-top:35rpx;
+}
+
+.btn{
+  color:#ff4400;
+  background: transparent;
+  height:100rpx;
+  line-height:100rpx;
+  font-size:28rpx;
+}
+
+.btn::after{
+  border:none;
+  background: transparent;
+}
+
+.bottom1{
+  height:100rpx;
+  line-height: 100rpx;
+  border-bottom:20rpx solid #F8F9FA;
+}
+
+/* 清除弹窗 */
+
+.clear-dialog {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 110;
+  top: 0rpx;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dialog-content {
+  position: absolute;
+  z-index: 120;
+  background: white;
+  top: 400rpx;
+  left: 75rpx;
+  width: 600rpx;
+  border-radius: 8rpx;
+  padding-top: 30rpx;
+}
+
+.dialog-content-item {
+  padding-left: 140rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 24rpx;
+}
+
+.dialog-content-item-icon {
+  width: 24rpx;
+  height: 24rpx;
+  margin-top: 8rpx;
+}
+
+.dialog-content-bottom {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border-top: 1px solid rgba(221, 221, 221, 0.2);
+  font-size: 24rpx;
+  margin-top: 30rpx;
+}
+
+.dialog-content-bottom-item {
+  width: 300rpx;
+  text-align: center;
+}
+
+.dialog-content-bottom-line {
+  height: 60rpx;
+  border-left: 1px solid rgba(240, 240, 240, 0.9);
+  margin-top: 10rpx;
+}

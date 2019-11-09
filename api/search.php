@@ -14,7 +14,7 @@ $where = $_POST['Where'];
 $Mysql = Mysql::mysql('baike');
 
 //多选模式
-$objects = $Mysql->fields('*')->limit(($PageIndex-1)*$PageSize,$PageIndex*$PageSize)->where($where)->order('id desc')->select();
+$objects = $Mysql->fields('*')->limit(($PageIndex-1)*$PageSize,$PageSize)->where($where)->order('id desc')->select();
 
 
 $res['Data'] = $objects;

@@ -1,9 +1,167 @@
 <!--index.wxml-->
 <view class="container">
-  <sc-view sc-class="flex item-container" wx:for="{{list}}" wx:key="id" >
-    <view  class="item c overline" bindtap="GOurl" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
-    <view class="flex vc hc" style="height:80rpx;width:80rpx;">
-      <image style="width:40rpx;height:40rpx;" src="/imgs/more.png"></image>
+  <!-- 筛选条件框 -->
+  <view class="filter">
+    <scroll-view scroll-x class="flex f28 scroll" style="height:70rpx;line-height:70rpx;">
+      <view class="scroll-items" style="display:flex;flex-direction:row;">
+        <view data-cindex="{{index-2}}" data-index="{{index}}" class="flex item vc" wx:for="{{bars}}" wx:key="k" bindtap="toogleShowBar">
+          <view>{{item.title}}</view>
+          <image class="bar-icon" src="{{item.show?'/imgs/triangle1.png':'/imgs/triangle.png'}}"></image>
+        </view>
+      </view>
+    </scroll-view>
+
+    <!-- 创建时间 -->
+    <view  data-index="0" catchtap="toogleShowBar" style="background:rgba(139, 139, 139,0.3);height:{{bars[0].show?windowHeight-70:0}}rpx" catchtouchmove="undo" class="bar f28">
+      <view style="background:#0096fa;width:750rpx;">
+        <!-- 起始查询时间 -->
+        <view class="c f22" style="height:70rpx;line-height:70rpx;">点击时间选项可过滤起始时间和结束时间内创建的词条</view>
+        <view class="flex ">
+          <view class="flex-c hc" style="width:375rpx;">
+            <picker value="{{startValue}}" mode='date' start="{{STARTTIME}}" end="{{ENDTIME}}" bindchange="startDateChange">
+              <view class="c">
+                起始时间：{{startValue}}
+              </view>
+            </picker>
+          </view>
+          <view class="flex-c hc" style="width:375rpx;height:70rpx;">
+            <picker value="{{endValue}}" mode='date' start="{{STARTTIME}}" end="{{ENDTIME}}" bindchange="endDateChange">
+              <view class="c">
+                结束时间：{{endValue}}
+              </view>
+            </picker>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 词条类型 -->
+    <view class="bar f28" style="height:{{bars[1].show?windowHeight-70:0}}rpx;">
+      <view style="position:relative;">
+        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;height:{{windowHeight-70}}rpx;">
+          <!-- 起始查询时间 -->
+          <view class="c f22" style="height:70rpx;line-height:70rpx;">过滤词条类型,可多选</view>
+          <view class="flags">
+            <view wx:for="{{flags}}" wx:key="f">
+              <view style="height:100rpx;line-height:100rpx;">{{item.type}}</view>
+              <view>
+                <view data-index="{{index}}" data-iindex="{{iindex}}" bindtap="selectType" class="flag-item" wx:for="{{item.items}}" wx:key="i" wx:for-item="iitem" wx:for-index="iindex" style="margin-left:{{iindex % 4==0?'0':'10'}}rpx;background:{{iitem.selected?'#FF4400':'white'}};color:{{iitem.selected?'white':'#333'}}">
+                  {{iitem.Text}}
+                </view>
+              </view>
+
+              <view style="clear:both;"></view>
+            </view>
+          </view>
+
+          <view style="height:120rpx;"></view>
+        </scroll-view>
+                <!-- 重置和确定按钮 -->
+        <view class="filter-btn flex">
+          <view data-index="{{index}}"  class="reset" bindtap="resetType" hover-class="select1">重置</view>
+          <view data-index="{{index}}"  class="confirmbtn" bindtap="confirmType">确定</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 过滤与屏蔽 -->
+
+    <view data-cindex="{{index}}"  data-index="{{item.index}}" wx:for="{{filterBars}}" wx:key="i" catchtap="toogleShowBar" class="bar f28" style="height:{{bars[item.index].show?windowHeight-70:0}}rpx;background:rgba(139, 139, 139,0.3);" catchtouchmove="undo">
+      <view catchtap="undo" style="position:relative;z-index:100">
+        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;max-height:{{windowHeight-70}}rpx;background:#0096fa;">
+          <view class="c f22" style="height:70rpx;line-height:70rpx;">{{item.prompt}}</view>
+
+          <!-- 过滤列表 -->
+          <view class="flags">
+            <view style="height:100rpx;line-height:100rpx;">过滤列表</view>
+            <view>
+              <view class="flag-item1 flex" wx:for="{{item.filterList}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="i" style="margin-left:{{iindex % 3==0?'0':'10'}}rpx;background:{{iitem.selected?'#FF4400':'white'}};color:{{iitem.selected?'white':'#333'}}">
+                <view data-index="{{index}}" data-iindex="{{iindex}}" bindtap="toogleFilterName" class="c" style="width:180rpx;">{{iitem.Text}}</view>
+                <view data-index="{{index}}" data-type="filter" data-iindex="{{iindex}}" bindtap="deleteNameWord" class="flex vc" style="height:70rpx;padding-left:10rpx;padding-right:10rpx;">
+                  <image src="{{iitem.selected?'/imgs/delete1.png':'/imgs/delete.png'}}" style="width:20rpx;height:20rpx;"></image>
+                </view>
+              </view>
+              <input  value="{{item.FilterText}}" class="flag-item" style="margin-left:{{item.filterList.length % 3==0?'0':'10'}}rpx;width:230rpx;" placeholder="+ 添加名称" bindinput="FilterInput" bindblur="FilterAdd"></input>
+
+            </view>
+            <view style="clear:both;"></view>
+          </view>
+
+          <!-- 屏蔽列表 -->
+          <view class="flags">
+            <view style="height:100rpx;line-height:100rpx;">屏蔽列表</view>
+            <view>
+              <view class="flag-item1 flex" wx:for="{{item.banList}}" wx:for-item="iitem" wx:for-index="iindex" wx:key="i" style="margin-left:{{iindex % 3==0?'0':'10'}}rpx;background:{{iitem.selected?'#FF4400':'white'}};color:{{iitem.selected?'white':'#333'}}">
+                <view data-index="{{index}}" data-iindex="{{iindex}}" bindtap="toogleBanName" class="c" style="width:180rpx;">{{iitem.Text}}</view>
+                <view data-type="ban" data-index="{{iindex}}" bindtap="deleteNameWord" class="flex vc" style="height:70rpx;padding-left:10rpx;padding-right:10rpx;">
+                  <image src="{{iitem.selected?'/imgs/delete1.png':'/imgs/delete.png'}}" style="width:20rpx;height:20rpx;"></image>
+                </view>
+              </view>
+              <input value="{{item.BanText}}" class="flag-item" style="margin-left:{{item.banList.length % 3==0?'0':'10'}}rpx;width:230rpx;" placeholder="+ 添加名称" bindinput="BanInput" bindblur="BanAdd"></input>
+
+            </view>
+            <view style="clear:both;"></view>
+          </view>
+
+          <view style="height:140rpx;"></view>
+        </scroll-view>
+        <!-- 重置和确定按钮 -->
+        <view class="filter-btn flex">
+          <view data-index="{{index}}"  class="reset" bindtap="resetFilter" hover-class="select1">重置</view>
+          <view data-index="{{index}}"  class="confirmbtn" bindtap="confirmFilter">确定</view>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view style="height:70rpx;"></view>
+
+
+  <view class="flex-b f26 b bar1">
+    <view style="width:340rpx;padding-left:30rpx;">词条名称</view>
+    <view class="flex" style="width:380rpx;">
+      <view style="width:150rpx;">创建者</view>
+      <view class="c" style="width:150rpx;">时间</view>
+      <view class="c" style="width:105rpx;">
+        <picker value="{{edit_value}}" range="{{num_array}}" bindchange="editNumChange">
+          <view class="flex vc">
+          <view class="c">
+            次数{{edit_value*1+1}}
+          </view>
+          <image style="width:20rpx;height:20rpx;margin-top:5rpx;" src="/imgs/down.png"></image>
+          </view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <sc-view sc-class="flex item-container f24 bc" wx:for="{{list}}" wx:key="id*1">
+    <image data-click="true" data-index="{{index}}" data-num="{{item.num}}" wx:if="{{item.mark}}" bindtap="toogleMark" style="width:50rpx;height:50rpx;position:absolute;top:0rpx;left:0rpx;" src="/imgs/mark.png"></image>
+    <!-- <image wx:if="{{item.mark}}" src="/imgs/star-gold.png" style="width:30rpx;height:30rpx;"></image>
+    <view wx:else style="width:30rpx;height:80rpx;"></view> -->
+    <view data-index="{{index}}" class="item overline" style="color:{{item.view?'red':'black'}};" bindtap="GOurl" catchlongpress="toogleMark" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
+    <view data-index="{{index}}" data-num="{{item.num}}" class="flex vc hc" style="height:80rpx;width:380rpx;" catchtap="showLayer">
+      <view class="overline" style="width:150rpx;">{{item.cname}}</view>
+      <view class="c" style="width:150rpx;">{{item.shortTime}}</view>
+      <view class="c" style="width:80rpx;">{{item.edit_num}}</view>
     </view>
   </sc-view>
 </view>
+
+<!-- 缺醒图 -->
+<view wx:if="{{list.length == 0 && !loading}}" class="c" style="padding-bottom:100rpx;">
+  <image style="display:block;width:215rpx;height:252rpx;margin:0 auto;margin-top:150rpx;" src="/imgs/hasno.png"></image>
+  <view class="f22 c3" style="margin-top:50rpx;">没有找到相关内容...</view>
+</view>
+
+<!-- 上拉加载更多的图标 -->
+<view wx:if="{{loading && list.length > 0}}" class="loading">
+  <image class="loading-img" src="/imgs/upLoad.gif"></image>
+  <view>加载中 ...</view>
+</view>
+
+<!-- 没有更多 -->
+<view class="hasNoMore c" wx:if="{{hasNoMore}}">已全部加载完毕</view>
+
+<layer id="layer" show="{{showLayer}}" item="{{item}}" windowHeight="{{windowHeight}}"></layer>

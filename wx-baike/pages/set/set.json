@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "我的",
+      "usingComponents": {
+        "sc-view": "/utils/dist/components/scView/sc-view"
+      }
+}

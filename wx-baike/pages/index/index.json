@@ -1,6 +1,9 @@
 {
   "enablePullDownRefresh": true,
-  "usingComponents": {
-    "sc-view":"/utils/dist/components/scView/sc-view"
-  }
+
+  "onReachBottomDistance": 300,
+    "usingComponents": {
+      "layer": "/components/layer/layer",
+      "sc-view": "/utils/dist/components/scView/sc-view"
+    }
 }
