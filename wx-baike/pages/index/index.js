@@ -33,6 +33,27 @@ Page({
     })
   },
 
+  onPullDownRefresh:function(){
+    let self = this;
+
+    app.request({
+      data: {
+        PageIndex: 1,
+        PageSize: 100,
+        // Where:{
+        //   // name:[]
+        // }
+      }
+    }).then(res => {
+      let list = res.data.Data;
+      self.setData({
+        list
+      })
+
+       wx.stopPullDownRefresh()
+    })
+  },
+
   /**
    * 导航到百科页面
    */
