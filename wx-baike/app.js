@@ -123,6 +123,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    url: 'http://198.13.53.230/search.php'
+    url: 'https://www.saicoding.club/search.php'
   }
 })

@@ -73,6 +73,7 @@ Page({
     let flags = utils.flags
     let filterBars = this.data.filterBars;
 
+
     wx.showLoading({
       title: '载入中',
       icon: 'none'
@@ -228,19 +229,23 @@ Page({
   onPullDownRefresh:function(){
     let self = this;
 
+    wx.showNavigationBarLoading()
+    wx.startPullDownRefresh({
+      
+    })
+
     app.request({
       data: {
         PageIndex: 1,
         PageSize: 100,
-        // Where:{
-        //   // name:[]
-        // }
       }
     }).then(res => {
       let list = res.data.Data;
       self.setData({
         list
       })
+
+      wx.hideNavigationBarLoading()
 
        wx.stopPullDownRefresh()
     })
