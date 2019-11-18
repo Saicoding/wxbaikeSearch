@@ -7,9 +7,9 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#000",
     "navigationBarTitleText": "百度百科",
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "onReachBottomDistance": 300
   },
   "tabBar": {

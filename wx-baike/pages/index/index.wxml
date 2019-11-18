@@ -140,7 +140,7 @@
     <image data-click="true" data-index="{{index}}" data-num="{{item.num}}" wx:if="{{item.mark}}" bindtap="toogleMark" style="width:50rpx;height:50rpx;position:absolute;top:0rpx;left:0rpx;" src="/imgs/mark.png"></image>
     <!-- <image wx:if="{{item.mark}}" src="/imgs/star-gold.png" style="width:30rpx;height:30rpx;"></image>
     <view wx:else style="width:30rpx;height:80rpx;"></view> -->
-    <view data-index="{{index}}" class="item overline" style="color:{{item.view?'red':'black'}};" bindtap="GOurl" catchlongpress="toogleMark" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
+    <view data-index="{{index}}" class="item overline" style="color:{{item.view?'red':'#fff464'}};" bindtap="GOurl" catchlongpress="toogleMark" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
     <view data-index="{{index}}" data-num="{{item.num}}" class="flex vc hc" style="height:80rpx;width:380rpx;" catchtap="showLayer">
       <view class="overline" style="width:150rpx;">{{item.cname}}</view>
       <view class="c" style="width:150rpx;">{{item.shortTime}}</view>

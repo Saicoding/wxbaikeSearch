@@ -1,6 +1,7 @@
 /**index.wxss**/
 
 page {
+  background: #dedede;
 }
 
 .bar, .item {
@@ -16,7 +17,9 @@ page {
 
 .item-container {
   position: relative;
-  border-bottom: 1rpx solid #e6e6e6;
+  background:#000000;
+  color:#fff464;
+  border-bottom: 1rpx solid #b8b8b8;
 }
 
 .filter {

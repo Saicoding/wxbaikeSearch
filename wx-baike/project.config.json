@@ -23,8 +23,8 @@
 		"enhance": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.9.1",
-	"appid": "wxba6c2df25a415872",
+	"libVersion": "2.9.3",
+	"appid": "wx31bb8b5bd62d6251",
 	"projectname": "baike",
 	"debugOptions": {
 		"hidedInDevtools": []
