@@ -2,148 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3edbc1e7-07a6-4c09-aee8-e5a6f2dbead8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/circle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/delete.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/delete1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/down.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/hasno.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/home.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/home1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/mark.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/right.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/select.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/set.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/set1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/star-gold.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/star-grey.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/triangle.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/triangle1.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/imgs/upLoad.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.wxss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/getView.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/setTime.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test1.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wxlogin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config.php" beforeDir="false" afterPath="$PROJECT_DIR$/config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/search.php" beforeDir="false" afterPath="$PROJECT_DIR$/search.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql.php" beforeDir="false" afterPath="$PROJECT_DIR$/mysql.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/sql.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sql.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/app.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/components/layer/layer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/components/layer/layer.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/home.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/home1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/home1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/set.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/set.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/set1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/set1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/triangle.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/triangle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/triangle1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/triangle1.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.wxml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.wxss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/font-icon/material.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/lib/day/day.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/lib/transHexOrRgb/transHexOrRgb.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/wxss/color.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/wxss/components.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/wxss/font.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/wxss/layout.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/assets/wxss/shadow.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/sc-ripple-behaviors/sc-ripple-behaviors.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/utils/dist/components/sc-ripple-behaviors/sc-ripple-behaviors.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scButton/sc-button.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scButton/sc-button.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scButton/sc-button.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scButton/sc-button.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCell/sc-cell.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCell/sc-cell.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCell/sc-cell.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCell/sc-cell.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCellGroup/sc-cell-group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCellGroup/sc-cell-group.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCellGroup/sc-cell-group.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCellGroup/sc-cell-group.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckbox/sc-checkbox.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckbox/sc-checkbox.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckbox/sc-checkbox.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckbox/sc-checkbox.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckboxGroup/sc-checkbox-group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckboxGroup/sc-checkbox-group.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckboxGroup/sc-checkbox-group.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scCheckboxGroup/sc-checkbox-group.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDatePicker/sc-date-picker-o.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDatePicker/sc-date-picker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDatePicker/sc-date-picker.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDatePicker/sc-date-picker.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDatePicker/sc-date-picker.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDialog/sc-dialog-o.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDialog/sc-dialog.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDialog/sc-dialog.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDialog/sc-dialog.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scDialog/sc-dialog.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scForm/sc-form.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scForm/sc-form.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scForm/sc-form.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scForm/sc-form.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scInput/sc-input.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scInput/sc-input.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scInput/sc-input.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scInput/sc-input.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scLoading/sc-loading.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scLoading/sc-loading.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scLoading/sc-loading.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scLoading/sc-loading.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scOption/sc-option.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scOption/sc-option.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scOption/sc-option.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scOption/sc-option.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scProgress/sc-progress.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scProgress/sc-progress.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scProgress/sc-progress.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scProgress/sc-progress.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadio/sc-radio.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadio/sc-radio.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadio/sc-radio.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadio/sc-radio.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadioGroup/sc-radio-group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadioGroup/sc-radio-group.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadioGroup/sc-radio-group.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scRadioGroup/sc-radio-group.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSelect/sc-select.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSelect/sc-select.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSelect/sc-select.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSelect/sc-select.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSnackbar/sc-snackbar-o.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSnackbar/sc-snackbar.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSnackbar/sc-snackbar.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSnackbar/sc-snackbar.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSnackbar/sc-snackbar.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSwitch/sc-switch.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSwitch/sc-switch.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSwitch/sc-switch.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scSwitch/sc-switch.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTab/sc-tab.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTab/sc-tab.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTab/sc-tab.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTab/sc-tab.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTabGroup/sc-tab-group.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTabGroup/sc-tab-group.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTabGroup/sc-tab-group.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTabGroup/sc-tab-group.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTextarea/sc-textarea.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTextarea/sc-textarea.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTextarea/sc-textarea.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTextarea/sc-textarea.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTimePicker/sc-time-picker-o.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTimePicker/sc-time-picker.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTimePicker/sc-time-picker.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTimePicker/sc-time-picker.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/components/scTimePicker/sc-time-picker.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/config/config.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/config/theme/sc-theme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/sc-ui.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/dist/sc-ui.wxss" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../wx-baike/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/utils/util.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -152,77 +44,23 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/search.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="18" selection-start-line="18" selection-end-line="18" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/mysql.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="32">
-              <caret line="103" column="9" lean-forward="true" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="ComposerSettings">
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/search.php" />
-        <option value="$PROJECT_DIR$/mysql.php" />
-        <option value="$PROJECT_DIR$/config.php" />
-      </list>
-    </option>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/getView.php" root0="SKIP_INSPECTION" root1="SKIP_INSPECTION" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="551" />
-    <option name="width" value="1376" />
-    <option name="height" value="1047" />
-  </component>
+  <component name="ProjectId" id="1ToviKe2DHKVQ1lcCU1rEstL9Ad" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="api" type="b2602c69:ProjectViewProjectNode" />
-              <item name="api" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="Scope" />
-    </panes>
-  </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../All_Project/Selenium" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -251,62 +89,31 @@
       <workItem from="1572093553383" duration="9423000" />
       <workItem from="1572143406022" duration="1561000" />
       <workItem from="1573272565158" duration="905000" />
+      <workItem from="1574139396385" duration="604000" />
+      <workItem from="1574141921839" duration="2934000" />
+      <workItem from="1574672548301" duration="7000" />
+      <workItem from="1574672630345" duration="3944000" />
+      <workItem from="1574728561368" duration="18967000" />
+      <workItem from="1574846462096" duration="3000" />
+      <workItem from="1574846485102" duration="111000" />
+      <workItem from="1575004159565" duration="5601000" />
     </task>
     <servers />
-  </component>
-  <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11889000" />
-  </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2553305" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32934782" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="right" id="SciView" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="Database" order="3" />
-    </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
-  <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/search.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="18" selection-start-line="18" selection-end-line="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="28" selection-start-line="8" selection-start-column="28" selection-end-line="8" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mysql.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="103" column="9" lean-forward="true" selection-start-line="103" selection-start-column="9" selection-end-line="103" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

@@ -1,6 +1,6 @@
 <!--components/layer/layer.wxml-->
 <view wx:if="{{show}}" class="model" catchtap="hide">
-  <view class="content" catchtap="undo" style="top:{{(windowHeight-1000)/2}}rpx;">
+  <view class="content" catchtap="undo" style="top:{{(windowHeight-800)/2}}rpx;">
     <view class="flex item">
       <view>词条名称：</view>
       <view class="overline" style="width:440rpx;">{{item.name}}</view>

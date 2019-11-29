@@ -1,1 +1,1 @@
-SELECT `*` FROM `baike` WHERE STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') > STR_TO_DATE('2019-10-01', '%Y-%m-%d %H:%i') and STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') < STR_TO_DATE('2019-10-29', '%Y-%m-%d %H:%i') and flag regexp '人物' and cname regexp '紫' ORDER BY `id` DESC LIMIT 30, 30 \n
+SELECT `*` FROM `user` where openid = 'onU2I5BPZcB3664ePZydctJIsISQ'   \n

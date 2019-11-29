@@ -1,19 +1,26 @@
 <!--index.wxml-->
+<view style="position:fixed;top:0rpx;height:180rpx;width:100%;z-index:100;">
+  <image src="/imgs/bg1.png" style="height:180rpx;width:100%;position:absolute;top:0;"></image>
+  <view style="top:90rpx;height:50rpx;line-height:50rpx;color:white;font-size:28rpx;width:100%;text-align:center;position:absolute;z-index:101;">baike {{newest.flag?'·':''}} {{newest.flag}}</view>
+  <view data-num="{{newest.num}}" data-name="{{newest.name}}" bindtap="GOurl" class="overline" style="position:absolute;top:100rpx;left:220rpx;width:320rpx;color:white;font-size:24rpx;height:100rpx;line-height:100rpx;text-align:center;">{{newest.name}}</view>
+</view>
 <view class="container">
   <!-- 筛选条件框 -->
-  <view class="filter">
-    <scroll-view scroll-x class="flex f28 scroll" style="height:70rpx;line-height:70rpx;">
+  <view class="filter" style="top:180rpx;">
+    <scroll-view enable-flex scroll-x class="flex f28 scroll" style="height:70rpx;line-height:70rpx;">
       <view class="scroll-items" style="display:flex;flex-direction:row;">
-        <view data-cindex="{{index-2}}" data-index="{{index}}" class="flex item vc" wx:for="{{bars}}" wx:key="k" bindtap="toogleShowBar">
-          <view>{{item.title}}</view>
-          <image class="bar-icon" src="{{item.show?'/imgs/triangle1.png':'/imgs/triangle.png'}}"></image>
-        </view>
+        <sc-view data-cindex="{{index-2}}" data-index="{{index}}" sc-class="item baritem" wx:for="{{bars}}" wx:key="k" bindtap="toogleShowBar">
+          <view class="flex-c vc">
+            <view>{{item.title}}</view>
+            <image class="bar-icon" src="{{item.show?'/imgs/triangle1.png':'/imgs/triangle.png'}}"></image>
+          </view>
+        </sc-view>
       </view>
     </scroll-view>
 
     <!-- 创建时间 -->
-    <view  data-index="0" catchtap="toogleShowBar" style="background:rgba(139, 139, 139,0.3);height:{{bars[0].show?windowHeight-70:0}}rpx" catchtouchmove="undo" class="bar f28">
-      <view style="background:#0096fa;width:750rpx;">
+    <view data-index="0" catchtap="toogleShowBar" style="background:rgba(139, 139, 139,0);height:{{bars[0].show?windowHeight-70:0}}rpx" catchtouchmove="undo" class="bar f28">
+      <view style="background:#10e7c6;width:750rpx;">
         <!-- 起始查询时间 -->
         <view class="c f22" style="height:70rpx;line-height:70rpx;">点击时间选项可过滤起始时间和结束时间内创建的词条</view>
         <view class="flex ">
@@ -36,9 +43,9 @@
     </view>
 
     <!-- 词条类型 -->
-    <view class="bar f28" style="height:{{bars[1].show?windowHeight-70:0}}rpx;">
+    <view class="bar f28" style="height:{{bars[1].show?windowHeight-250:0}}rpx;">
       <view style="position:relative;">
-        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;height:{{windowHeight-70}}rpx;">
+        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;height:{{windowHeight-250}}rpx;">
           <!-- 起始查询时间 -->
           <view class="c f22" style="height:70rpx;line-height:70rpx;">过滤词条类型,可多选</view>
           <view class="flags">
@@ -56,19 +63,19 @@
 
           <view style="height:120rpx;"></view>
         </scroll-view>
-                <!-- 重置和确定按钮 -->
+        <!-- 重置和确定按钮 -->
         <view class="filter-btn flex">
-          <view data-index="{{index}}"  class="reset" bindtap="resetType" hover-class="select1">重置</view>
-          <view data-index="{{index}}"  class="confirmbtn" bindtap="confirmType">确定</view>
+          <view data-index="{{index}}" class="reset" bindtap="resetType" hover-class="select1">重置</view>
+          <view data-index="{{index}}" class="confirmbtn" bindtap="confirmType">确定</view>
         </view>
       </view>
     </view>
 
     <!-- 过滤与屏蔽 -->
 
-    <view data-cindex="{{index}}"  data-index="{{item.index}}" wx:for="{{filterBars}}" wx:key="i" catchtap="toogleShowBar" class="bar f28" style="height:{{bars[item.index].show?windowHeight-70:0}}rpx;background:rgba(139, 139, 139,0.3);" catchtouchmove="undo">
+    <view data-cindex="{{index}}" data-index="{{item.index}}" wx:for="{{filterBars}}" wx:key="i" catchtap="toogleShowBar" class="bar f28" style="height:{{bars[item.index].show?windowHeight-250:0}}rpx;background:rgba(255, 255, 255,0);" catchtouchmove="undo">
       <view catchtap="undo" style="position:relative;z-index:100">
-        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;max-height:{{windowHeight-70}}rpx;background:#0096fa;">
+        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;max-height:{{windowHeight-70}}rpx;background:#10e7c6;">
           <view class="c f22" style="height:70rpx;line-height:70rpx;">{{item.prompt}}</view>
 
           <!-- 过滤列表 -->
@@ -81,7 +88,7 @@
                   <image src="{{iitem.selected?'/imgs/delete1.png':'/imgs/delete.png'}}" style="width:20rpx;height:20rpx;"></image>
                 </view>
               </view>
-              <input  value="{{item.FilterText}}" class="flag-item" style="margin-left:{{item.filterList.length % 3==0?'0':'10'}}rpx;width:230rpx;" placeholder="+ 添加名称" bindinput="FilterInput" bindblur="FilterAdd"></input>
+              <input value="{{item.FilterText}}" class="flag-item" style="margin-left:{{item.filterList.length % 3==0?'0':'10'}}rpx;width:230rpx;" placeholder="+ 添加名称" bindinput="FilterInput" bindblur="FilterAdd"></input>
 
             </view>
             <view style="clear:both;"></view>
@@ -107,18 +114,17 @@
         </scroll-view>
         <!-- 重置和确定按钮 -->
         <view class="filter-btn flex">
-          <view data-index="{{index}}"  class="reset" bindtap="resetFilter" hover-class="select1">重置</view>
-          <view data-index="{{index}}"  class="confirmbtn" bindtap="confirmFilter">确定</view>
+          <view data-index="{{index}}" class="reset" bindtap="resetFilter" hover-class="select1">重置</view>
+          <view data-index="{{index}}" class="confirmbtn" bindtap="confirmFilter">确定</view>
         </view>
       </view>
     </view>
 
   </view>
 
-  <view style="height:70rpx;"></view>
+  <view style="height:250rpx;"></view>
 
-
-  <view class="flex-b f26 b bar1">
+  <view enable-flex class="flex-b f26 b bar1">
     <view style="width:340rpx;padding-left:30rpx;">词条名称</view>
     <view class="flex" style="width:380rpx;">
       <view style="width:150rpx;">创建者</view>
@@ -126,22 +132,22 @@
       <view class="c" style="width:105rpx;">
         <picker value="{{edit_value}}" range="{{num_array}}" bindchange="editNumChange">
           <view class="flex vc">
-          <view class="c">
-            次数{{edit_value*1+1}}
-          </view>
-          <image style="width:20rpx;height:20rpx;margin-top:5rpx;" src="/imgs/down.png"></image>
+            <view class="c">
+              次数{{edit_value*1+1 || 0}}
+            </view>
+            <image style="width:20rpx;height:20rpx;margin-top:5rpx;" src="/imgs/down.png"></image>
           </view>
         </picker>
       </view>
     </view>
   </view>
 
-  <sc-view sc-class="flex item-container f24 bc" wx:for="{{list}}" wx:key="id*1">
+  <sc-view sc-class="flex item-container f24 bc" wx:for="{{list}}" wx:key="i">
     <image data-click="true" data-index="{{index}}" data-num="{{item.num}}" wx:if="{{item.mark}}" bindtap="toogleMark" style="width:50rpx;height:50rpx;position:absolute;top:0rpx;left:0rpx;" src="/imgs/mark.png"></image>
     <!-- <image wx:if="{{item.mark}}" src="/imgs/star-gold.png" style="width:30rpx;height:30rpx;"></image>
     <view wx:else style="width:30rpx;height:80rpx;"></view> -->
-    <view data-index="{{index}}" class="item overline" style="color:{{item.view?'red':'#fff464'}};" bindtap="GOurl" catchlongpress="toogleMark" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
-    <view data-index="{{index}}" data-num="{{item.num}}" class="flex vc hc" style="height:80rpx;width:380rpx;" catchtap="showLayer">
+    <view data-index="{{index}}" class="item overline" style="color:{{item.view?'red':'#333'}};" bindtap="GOurl" catchlongpress="toogleMark" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
+    <view data-index="{{index}}" data-num="{{item.num}}" bindtap="showLayer" class="flex vc hc" style="height:80rpx;width:380rpx;">
       <view class="overline" style="width:150rpx;">{{item.cname}}</view>
       <view class="c" style="width:150rpx;">{{item.shortTime}}</view>
       <view class="c" style="width:80rpx;">{{item.edit_num}}</view>

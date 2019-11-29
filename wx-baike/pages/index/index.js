@@ -5,11 +5,14 @@ let utils = require('../../utils/util.js');
 
 
 const STARTTIME = '2019-10-01'; //默认最大可选起始时间
-const ENDTIME = utils.getCurrentDate();
+const ENDTIME = utils.getCurrentDate1();
 
 
 Page({
   data: {
+    windowHeight: app.globalData.windowHeight,
+    windowWidth: app.globalData.windowWidth,
+    jiaonang: app.globalData.jiaonang,
     params: {
       PageIndex: 0,
       PageSize: 30
@@ -73,120 +76,261 @@ Page({
     let flags = utils.flags
     let filterBars = this.data.filterBars;
 
-
     wx.showLoading({
       title: '载入中',
       icon: 'none'
     })
 
-    let startValue = wx.getStorageSync('startValue'); //获取当前缓存信息
-    let endValue = wx.getStorageSync('endValue');
-    let edit_value = wx.getStorageSync('edit_value');
-    let EntryType = wx.getStorageSync('EntryType');
-    let nameKeys = wx.getStorageSync('nameKeys') || {}; //词条名称过滤列表
-    let userKeys = wx.getStorageSync('userKeys') || {}; //词条名称过滤列表
-    let referKeys = wx.getStorageSync('referKeys') || {}; //词条名称过滤列表
-    let reasonKeys = wx.getStorageSync('reasonKeys') || {}; //词条名称过滤列表
+    app.getOpendID().then(res => {
+      app.globalData.openid = res.openid;
 
-    filterBars[0].filterList = nameKeys.Filter || [];
-    filterBars[0].filterList.map(item => {
-      item.selected = false;
+      // 查询该openid下有多少试用时间
+      app.request({
+        url: 'getView.php',
+        method: 'post',
+        data: {
+          openid: res.openid
+        },
+        self,
+      }).then(res => {
+        app.globalData.time = 0;
+
+        if (res.Data == '注册') { // 第一次访问
+          app.globalData.hasview = 0; //已经访问时间
+          app.globalData.canview = 300; //可以访问时间
+
+        } else { // 登录过
+          app.globalData.hasview = res.Data[0].hasview * 1;; //已经访问时间
+          app.globalData.canview = res.Data[0].canview * 1;
+        }
+
+        app.request({
+          url: 'setTime.php',
+          method: 'post',
+          data: {
+            openid: app.globalData.openid,
+            hasview: app.globalData.hasview
+          },
+          self
+        }).then(res => {
+          console.log(res)
+        })
+
+        // 设置计时器
+        let interval = setInterval(() => {
+          app.globalData.hasview += 1;
+          app.globalData.time += 1;
+          if (app.globalData.hasview > app.globalData.canview) {
+            clearInterval(interval);
+            wx.showToast({
+              title: '您没有足够体验时间',
+              icon: 'none',
+              duration: 4000
+            })
+            app.globalData.view = false;
+            app.request({
+              url: 'setTime.php',
+              method: 'post',
+              data: {
+                openid: app.globalData.openid,
+                hasview: app.globalData.hasview
+              },
+              self
+            }).then(res => {
+              let user = wx.getStorageSync('user');
+              if (user) {
+                user.hasview = app.globalData.hasview;
+                wx.setStorageSync('user', user);
+              }
+            })
+          }
+
+          // 每20秒请求一次接口
+          if (app.globalData.time > 20) {
+            app.globalData.time = 0;
+            let user = wx.getStorageSync('user');
+            if (user) {
+              user.hasview = app.globalData.hasview;
+              wx.setStorageSync('user', user);
+            }
+
+            app.request({
+              url: 'setTime.php',
+              method: 'post',
+              data: {
+                openid: app.globalData.openid,
+                hasview: app.globalData.hasview
+              },
+              self
+            }).then(res => {
+              console.log(res)
+            })
+          }
+
+        }, 1000)
+
+        app.globalData.interval = interval;
+
+        if (app.globalData.hasview < app.globalData.canview) {
+          let edit_value = wx.getStorageSync('edit_value');
+          let EntryType = wx.getStorageSync('EntryType');
+          let nameKeys = wx.getStorageSync('nameKeys') || {}; //词条名称过滤列表
+          let userKeys = wx.getStorageSync('userKeys') || {}; //词条名称过滤列表
+          let referKeys = wx.getStorageSync('referKeys') || {}; //词条名称过滤列表
+          let reasonKeys = wx.getStorageSync('reasonKeys') || {}; //词条名称过滤列表
+
+          filterBars[0].filterList = nameKeys.Filter || [];
+          filterBars[0].filterList.map(item => {
+            item.selected = false;
+          })
+          filterBars[0].banList = nameKeys.Ban || [];
+          filterBars[0].banList.map(item => {
+            item.selected = false;
+          })
+
+          filterBars[1].filterList = userKeys.Filter || [];
+          filterBars[1].filterList.map(item => {
+            item.selected = false;
+          })
+
+          filterBars[1].banList = userKeys.Ban || [];
+          filterBars[1].banList.map(item => {
+            item.selected = false;
+          })
+
+
+          filterBars[2].filterList = referKeys.Filter || [];
+          filterBars[2].filterList.map(item => {
+            item.selected = false;
+          })
+          filterBars[2].banList = referKeys.Ban || [];
+          filterBars[2].banList.map(item => {
+            item.selected = false;
+          })
+
+          filterBars[3].filterList = reasonKeys.Filter || [];
+          filterBars[3].filterList.map(item => {
+            item.selected = false;
+          })
+          filterBars[3].banList = reasonKeys.Ban || [];
+          filterBars[3].banList.map(item => {
+            item.selected = false;
+          })
+
+
+          let startValue = STARTTIME; //最小查询时间
+          let endValue = ENDTIME; //最大查询时间
+          edit_value = edit_value ? edit_value * 1 : 0; //最小编辑次数
+
+          params.WhereObj = {
+            StartDate: startValue,
+            EndDate: endValue
+          }
+
+          utils.setTypeSelect(flags, EntryType, params)
+
+          if (edit_value * 1 > 0) { //说明有设置编辑次数
+            params.WhereObj.Edit_num = edit_value * 1 + 1;
+          }
+
+          this.setData({
+            STARTTIME,
+            ENDTIME,
+            startValue,
+            endValue,
+            params,
+            flags,
+            edit_value,
+            filterBars
+          })
+
+          let obj = {
+            StartDate: startValue,
+            EndDate: endValue
+          }
+
+          this.setInt(obj);
+          this.search(params);
+        } else {
+          self.timeUp()
+        }
+      })
     })
-    filterBars[0].banList = nameKeys.Ban || [];
-    filterBars[0].banList.map(item => {
-      item.selected = false;
-    })
-
-    filterBars[1].filterList = userKeys.Filter || [];
-    filterBars[1].filterList.map(item => {
-      item.selected = false;
-    })
-
-    filterBars[1].banList = userKeys.Ban || [];
-    filterBars[1].banList.map(item => {
-      item.selected = false;
-    })
-
-
-    filterBars[2].filterList = referKeys.Filter || [];
-    filterBars[2].filterList.map(item => {
-      item.selected = false;
-    })
-    filterBars[2].banList = referKeys.Ban || [];
-    filterBars[2].banList.map(item => {
-      item.selected = false;
-    })
-
-    filterBars[3].filterList = reasonKeys.Filter || [];
-    filterBars[3].filterList.map(item => {
-      item.selected = false;
-    })
-    filterBars[3].banList = reasonKeys.Ban || [];
-    filterBars[3].banList.map(item => {
-      item.selected = false;
-    })
-
-
-
-
-
-
-    startValue = startValue ? startValue : STARTTIME; //最小查询时间
-    endValue = endValue ? endValue : ENDTIME; //最大查询时间
-    edit_value = edit_value ? edit_value * 1 : 0; //最小编辑次数
-
-    params.WhereObj = {
-      StartDate: startValue,
-      EndDate: endValue
-    }
-
-    utils.setTypeSelect(flags, EntryType, params)
-
-    if (edit_value * 1 > 0) { //说明有设置编辑次数
-      params.WhereObj.Edit_num = edit_value * 1 + 1;
-    }
-
-    this.setData({
-      STARTTIME,
-      ENDTIME,
-      startValue,
-      endValue,
-      params,
-      flags,
-      edit_value,
-      filterBars
-    })
-
-    this.search(params);
-
   },
 
   /**
-   * 生命周期事件
+   * 开启定时器
    */
-  onReady: function() {
+  setInt: function(obj) {
     let self = this;
-
-    wx.getSystemInfo({ //得到窗口高度,这里必须要用到异步,而且要等到窗口bar显示后再去获取,所以要在onReady周期函数中使用获取窗口高度方法
-      success: function(res) { //转换窗口高度
-        let windowHeight = res.windowHeight;
-        let windowWidth = res.windowWidth;
-        //最上面标题栏不同机型的高度不一样(单位PX
-
-        windowHeight = (windowHeight * (750 / windowWidth));
-
-        self.setData({
-          windowWidth,
-          windowHeight
-        })
+    app.request({
+      url: 'search.php',
+      self,
+      search: true,
+      data: {
+        PageIndex: 1,
+        PageSize: 1,
+        WhereObj: obj
       }
-    });
+    }).then(res => {
+      let newest = res.Data[0];
+      self.setData({
+        newest
+      })
+    })
+
+    let interval2 = setInterval(() => {
+      app.request({
+        self,
+        url: 'search.php',
+        search: true,
+        data: {
+          PageIndex: 1,
+          PageSize: 1,
+          WhereObj: obj
+        }
+      }).then(res => {
+        let newest = res.Data[0];
+        if (newest.name != self.data.newest.name){
+          console.log(newest)
+          self.setData({
+            newest
+          })
+        }
+      })
+    }, 10000)
+
+    this.setData({
+      interval2
+    })
+  },
+
+  /**
+   * 时间到提示框
+   */
+  timeUp: function() {
+    let self = this;
+    wx.showModal({
+      content: '您已经失去体验时间,请联系QQ417353147',
+      confirmText: '知道了',
+      confirmColor: '#10e7c6',
+      success: (res => {
+        self.setData({
+          list: []
+        })
+
+        wx.stopPullDownRefresh();
+      })
+    })
   },
 
   /**
    * 生命周期事件
    */
   onShow: function() {
+    //user
+    let user = wx.getStorageSync('user');
+
     if (app.globalData.clear) { //清除所有收藏和浏览信息
       app.globalData.clear = false;
       // 当前的请求参数
@@ -226,15 +370,17 @@ Page({
     }
   },
 
-  onPullDownRefresh:function(){
+  onPullDownRefresh: function() {
     let self = this;
 
     wx.showNavigationBarLoading()
     wx.startPullDownRefresh({
-      
+
     })
 
     app.request({
+      url: 'search.php',
+      search: true,
       data: {
         PageIndex: 1,
         PageSize: 100,
@@ -247,7 +393,7 @@ Page({
 
       wx.hideNavigationBarLoading()
 
-       wx.stopPullDownRefresh()
+      wx.stopPullDownRefresh()
     })
   },
 
@@ -255,29 +401,41 @@ Page({
    * 导航到百科页面
    */
   GOurl: function(e) {
+    let self = this;
     let res = e.currentTarget.dataset;
     let name = res.name;
     let num = res.num;
     let index = res.index;
 
-    let list = this.data.list;
 
-    // 点击的对象
-    let item = list[index];
-    item.view = true;
+    if (index){
+      let list = this.data.list;
 
-    this.setData({
-      list
+      // 点击的对象
+      let item = list[index];
+      item.view = true;
+
+      this.setData({
+        list
+      })
+    }
+
+    app.request({
+      url: 'view.php',
+      data: {
+        name,
+        num
+      },
+      method: 'get',
+      self,
+    }).then(res => {
+      wx.navigateTo({
+        url: '/pages/view/view'
+      })
+      // 加入已看过的id数组
+      self.setLocal('viewIDs', num);
     })
 
-    let url = 'https://baike.baidu.com/item/' + name + '/' + num;
-
-    wx.navigateTo({
-      url: '/pages/web-view/web-view?src=' + url,
-    })
-
-    // 加入已看过的id数组
-    this.setLocal('viewIDs', num);
   },
 
   /**
@@ -298,61 +456,67 @@ Page({
    */
   search: function(params, fresh) {
     let self = this;
-    let viewIdArray = wx.getStorageSync('viewIDs'); //本地所有已看过ID数组
-    let markIdArray = wx.getStorageSync('markIDs'); //已收藏的本地ID数组
+    console.log(params.WhereObj)
+    if (!app.globalData.view) {
+      this.timeUp();
+    } else {
+      let viewIdArray = wx.getStorageSync('viewIDs'); //本地所有已看过ID数组
+      let markIdArray = wx.getStorageSync('markIDs'); //已收藏的本地ID数组
 
-    //设置是否正在载入，现在同时请求
+      //设置是否正在载入，现在同时请求
 
-    params.PageIndex += 1;
+      params.PageIndex += 1;
 
-    if (this.data.loading) return;
+      if (this.data.loading) return;
 
-    this.setData({
-      loading: true
-    })
-
-    app.request({
-      data: params,
-      test: true,
-    }).then(res => {
-      // 新请求的列表
-      let newList = res.Data;
-
-      // 是否有更多
-      let hasNoMore = newList.length == 0;
-
-      // 当前列表
-      let currentList = self.data.list || [];
-
-      //如果是刷新，就置空原来的列表
-      if (fresh) {
-        currentList = [];
-      }
-
-
-      newList.map(item => {
-        item.shortTime = item.ctime.substring(5, 16);
-        item.ctime = item.ctime.slice(0, -3);
-        item.etime = item.etime.slice(0, -3);
-        item.view = viewIdArray.indexOf(item.num * 1) != -1;
-        item.mark = markIdArray.indexOf(item.num * 1) != -1;
-        item.refer = item.refer.substring(1);
-        item.referDate = item.referDate.substring(5, item.referDate.lastIndexOf(']'))
+      this.setData({
+        loading: true
       })
 
-      // 连接两个列表
-      let list = currentList.concat(newList);
+      app.request({
+        url: 'search.php',
+        data: params,
+        search: true,
+      }).then(res => {
+        // 新请求的列表
+        let newList = res.Data;
 
-      self.setData({
-        list,
-        hasNoMore,
-        params,
-        loading: false
+        // 是否有更多
+        let hasNoMore = newList.length == 0;
+
+        // 当前列表
+        let currentList = self.data.list || [];
+
+        //如果是刷新，就置空原来的列表
+        if (fresh) {
+          currentList = [];
+        }
+
+
+        newList.map(item => {
+          item.shortTime = item.ctime.substring(5, 16);
+          item.ctime = item.ctime.slice(0, -3);
+          item.etime = item.etime.slice(0, -3);
+          item.view = viewIdArray.indexOf(item.num * 1) != -1;
+          item.mark = markIdArray.indexOf(item.num * 1) != -1;
+          item.refer = item.refer.substring(1);
+          item.referDate = item.referDate.substring(5, item.referDate.lastIndexOf(']'))
+        })
+
+        // 连接两个列表
+        let list = currentList.concat(newList);
+
+        self.setData({
+          list,
+          hasNoMore,
+          params,
+          loading: false
+        })
+
+        wx.stopPullDownRefresh();
+        wx.hideLoading()
       })
-
-      wx.stopPullDownRefresh();
-      wx.hideLoading()
-    })
+    }
   },
 
   /**
@@ -371,11 +535,6 @@ Page({
 
     this.setData({
       startValue: value
-    }, () => {
-      wx.setStorage({
-        key: 'startValue',
-        data: value,
-      })
     })
 
     wx.showLoading({
@@ -389,6 +548,7 @@ Page({
   endDateChange: function(e) {
     let value = e.detail.value;
     let params = this.data.params;
+    let bars = this.data.bars;
 
     let EndDate = value + ' 00:00:00'
 
@@ -396,13 +556,11 @@ Page({
 
     params.WhereObj.EndDate = EndDate;
 
+    bars[0].title = value;
+
     this.setData({
-      endValue: value
-    }, () => {
-      wx.setStorage({
-        key: 'endValue',
-        data: value,
-      })
+      endValue: value,
+      bars
     })
 
     wx.showLoading({
@@ -474,10 +632,12 @@ Page({
     let list = this.data.list;
     let index = e.currentTarget.dataset.index;
     let num = e.currentTarget.dataset.num;
+    let name = e.currentTarget.dataset.name;
+
+    let url = 'https://baike.baidu.com/item/' + name + '/' + num;
     // 点击的对象
     let item = list[index];
     item.view = true;
-
 
     this.setData({
       list,
@@ -693,6 +853,8 @@ Page({
     let currentIndex = this.data.currentIndex;
     filterBars[currentIndex].BanText = e.detail.value;
 
+    console.log(e.detail.value)
+
     this.setData({
       filterBars
     })
@@ -762,6 +924,7 @@ Page({
     // 如果输入内容为空就返回
     if (!filterBars[currentIndex].BanText) return;
 
+
     banList.map(item => {
       if (item.Text == filterBars[currentIndex].BanText) {
         isExist = true
@@ -793,8 +956,6 @@ Page({
       banList.push(obj);
 
       filterBars[currentIndex].BanText = ""
-
-      console.log(filterBars)
 
       for (let i = 0; i < filterBars[currentIndex].filterList.length; i++) {
         filterBars[currentIndex].filterList[i].selected = false;
@@ -972,8 +1133,6 @@ Page({
       }
     }
 
-    console.log(selectedFilterList, selectedBanList)
-
     if (selectedFilterList.length > 0) {
       switch (index) {
         case 0: // 词条名称
@@ -1015,8 +1174,6 @@ Page({
           break;
       }
     }
-
-    console.log(params.WhereObj)
 
     // 页码设置为0
     params.PageIndex = 0;

@@ -48,10 +48,51 @@ class Mysql
         return new self($table);
     }
 
+    //给一个数组，数组键名为列，数组值为列值
+    public function insertUser($arr){
+        $keys = '';
+        $values = '';
+
+        foreach ($arr as $key => $value) {
+            $keys .= $key . ',';
+            $values .= '"' . $value . '"' . ',';
+        }
+        $keys = substr($keys,0,(strlen($keys) - 1));
+        $values = substr($values,0,(strlen($values) - 1));
+
+        $sql = "insert into user ( $keys ) values ( $values );";
+
+        file_put_contents('sqlUser.txt',$sql);
+
+        //得到准备对象
+        $stmt = $this->pdo->prepare($sql);
+
+        //执行SQL语句
+        $stmt->execute();
+    }
+
+    public function updateUser($arr,$openid){
+        $set = "";
+        foreach ($arr as $key => $value) {
+            $set .= $key . '="' .$value. '",';
+        }
+
+        $set = substr($set,0,(strlen($set) - 1));
+
+        $sql = "update user set ".$set."where openid='".$openid."'";
+
+        file_put_contents('updateUser.txt',$sql);
+
+        //得到准备对象
+        $stmt = $this->pdo->prepare($sql);
+
+        //执行SQL语句
+        $stmt->execute();
+    }
+
     ///多查询方法
     public function select()
     {
-
         //重组SQL语句
         $sql = "SELECT $this->fields FROM $this->table $this->where $this->order $this->limit ";
         file_put_contents("sql.txt",$sql.'\n');

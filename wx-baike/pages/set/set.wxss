@@ -3,12 +3,45 @@
   border-bottom:20rpx solid #F8F9FA;
 }
 
+.top{
+  background-color: #14d0b4;
+  width:750rpx;
+  padding-top:180rpx;
+  background-size: cover;
+}
+
+.title{
+  width:100%;
+  text-align: center;
+  color:white;
+  font-size:28rpx;
+}
+
+.text{
+  font-size:35rpx;
+  color:white;
+}
+
+.author-btn{
+  background:rgba(134, 134, 134,0.2);
+  height:60rpx;
+  line-height:60rpx;
+  font-size:25rpx;
+  text-align: center;
+  border-radius: 60rpx;
+}
+
 .item{
   width:690rpx;
   padding-left:30rpx;
   padding-right:30rpx;
   height:100rpx;
   line-height:100rpx;
+}
+
+
+.author-btn::after{
+  border:none;
 }
 
 .item-icon{

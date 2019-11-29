@@ -1,13 +1,13 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/web-view/web-view",
     "pages/set/set",
-    "pages/set/about/about"
+    "pages/set/about/about",
+    "pages/view/view"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#000",
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "百度百科",
     "navigationBarTextStyle": "white",
     "onReachBottomDistance": 300
@@ -21,16 +21,14 @@
         "selectedColor": "#0096fa",
         "iconPath": "/imgs/home.png",
         "selectedIconPath": "/imgs/home1.png",
-        "color": "#6e6e6e",
-        "text": "搜索"
+        "color": "#6e6e6e"
       },
       {
         "pagePath": "pages/set/set",
         "selectedColor": "#0096fa",
         "iconPath": "/imgs/set.png",
         "selectedIconPath": "/imgs/set1.png",
-        "color": "#6e6e6e",
-        "text": "设置"
+        "color": "#6e6e6e"
       }
     ]
   },

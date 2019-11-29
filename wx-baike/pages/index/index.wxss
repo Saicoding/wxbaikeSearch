@@ -1,13 +1,18 @@
 /**index.wxss**/
+@font-face {
+}
 
 page {
-  background: #dedede;
+}
+
+.top{
+  background-color: #10e7c6;
+  padding-top:180rpx;
 }
 
 .bar, .item {
   line-height: 80rpx;
   height: 80rpx;
-  
 }
 
 .item {
@@ -17,25 +22,23 @@ page {
 
 .item-container {
   position: relative;
-  background:#000000;
-  color:#fff464;
-  border-bottom: 1rpx solid #b8b8b8;
+  border-bottom: 1rpx solid #e6e6e6;
 }
 
 .filter {
   width: 100%;
   position: fixed;
   top: 0rpx;
-  background: #0096fa;
+  background: #10e7c6;
   color: white;
-  z-index: 1;
+  z-index: 102;
 }
 
 .bar {
   position: absolute;
   line-height:70rpx;
   border-top: 1rpx solid white;
-  background: #0096fa;
+  background: #10e7c6;
   height: 0rpx;
   overflow: hidden;
     transition: all 0.2s ease-in 0s;
@@ -53,13 +56,13 @@ page {
   white-space: nowrap;
 }
 
-.scroll-items > view {
-  width: 600rpx;
-  text-align: center;
-}
-
 .item {
   height: 70rpx;
+}
+
+.baritem{
+  width:170rpx;
+  text-align: center;
 }
 
 .flags{

@@ -1,6 +1,6 @@
 {
   "enablePullDownRefresh": true,
-
+  "navigationStyle": "custom",
   "onReachBottomDistance": 300,
     "usingComponents": {
       "layer": "/components/layer/layer",

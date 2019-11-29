@@ -1,6 +1,8 @@
 {
+  "navigationStyle": "custom",
   "navigationBarTitleText": "我的",
-      "usingComponents": {
-        "sc-view": "/utils/dist/components/scView/sc-view"
-      }
+  "usingComponents": {
+    "sc-view": "/utils/dist/components/scView/sc-view",
+    "sc-button":"/utils/dist/components/scButton/sc-button"
+  }
 }

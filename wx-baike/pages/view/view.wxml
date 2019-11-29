@@ -1,0 +1,2 @@
+<!--pages/view/view.wxml-->
+<web-view src="https://www.saicoding.club/view.html"></web-view>

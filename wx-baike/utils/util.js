@@ -10,7 +10,28 @@ function getCurrentDate() {
   let d = mydate.getDate(); //获取当前日(1-31)
   d = d < 10 ? '0' + d : d;
 
-  let date = y + '-' + m + '-' + d;
+  var hour = mydate.getHours();
+  hour = hour < 10 ? '0' + hour : hour
+
+  var minute = mydate.getMinutes();
+  minute = minute < 10 ? '0' + minute : minute
+  var second = mydate.getSeconds();
+  second = second < 10 ? '0' + second : second;
+
+  let date = y + '-' + m + '-' + d + ' ' + hour+':'+minute+':'+second;
+  return date
+}
+
+function getCurrentDate1() {
+  let mydate = new Date();
+  let y = mydate.getFullYear();
+  let m = mydate.getMonth() + 1;
+  m = m < 10 ? '0' + m : m
+
+  let d = mydate.getDate(); //获取当前日(1-31)
+  d = d < 10 ? '0' + d : d;
+
+  let date = y + '-' + m + '-' + d 
   return date
 }
 
@@ -503,7 +524,6 @@ const flags = [{
  */
 function setTypeSelect(flags, arr, params){
   let selArr =[];
-  console.log(params)
   for(let i =0;i<flags.length;i++){
     let flag = flags[i];
     for(let j =0;j<flag.items.length;j++){
@@ -522,6 +542,7 @@ function setTypeSelect(flags, arr, params){
 
 module.exports = {
   getCurrentDate,
+  getCurrentDate1,
   flags,
   setTypeSelect
 }
