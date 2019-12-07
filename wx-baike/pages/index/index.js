@@ -95,6 +95,10 @@ Page({
       }).then(res => {
         app.globalData.time = 0;
 
+        self.setData({
+          loaded:true 
+        })
+
         if (res.Data == '注册') { // 第一次访问
           app.globalData.hasview = 0; //已经访问时间
           app.globalData.canview = 300; //可以访问时间
@@ -330,6 +334,7 @@ Page({
   onShow: function() {
     //user
     let user = wx.getStorageSync('user');
+
 
     if (app.globalData.clear) { //清除所有收藏和浏览信息
       app.globalData.clear = false;

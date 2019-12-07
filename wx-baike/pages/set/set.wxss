@@ -23,12 +23,14 @@
 }
 
 .author-btn{
-  background:rgba(134, 134, 134,0.2);
+  background:rgba(116, 116, 116, 0.6);
   height:60rpx;
   line-height:60rpx;
   font-size:25rpx;
   text-align: center;
   border-radius: 60rpx;
+  margin-left:30rpx;
+  width:180rpx;
 }
 
 .item{
@@ -37,6 +39,18 @@
   padding-right:30rpx;
   height:100rpx;
   line-height:100rpx;
+}
+
+.item1{
+    height:100rpx;
+  line-height:100rpx;
+  background: white;
+  font-size:28rpx;
+
+}
+
+.item1::after{
+  border:none;
 }
 
 

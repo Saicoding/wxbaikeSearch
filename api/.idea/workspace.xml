@@ -2,41 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3edbc1e7-07a6-4c09-aee8-e5a6f2dbead8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/getView.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/setTime.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test1.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/view.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wxlogin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/message/test.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql.php" beforeDir="false" afterPath="$PROJECT_DIR$/mysql.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql.txt" beforeDir="false" afterPath="$PROJECT_DIR$/sql.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/components/layer/layer.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/components/layer/layer.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/components/layer/layer.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/home.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/home.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/home1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/home1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/set.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/set.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/set1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/set1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/triangle.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/triangle.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/imgs/triangle1.png" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/imgs/triangle1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/index/index.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/about/about.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/pages/set/set.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.wxml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/pages/web-view/web-view.wxss" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/project.config.json" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/project.config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wx-baike/utils/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/../wx-baike/utils/util.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,6 +15,20 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -96,7 +77,8 @@
       <workItem from="1574728561368" duration="18967000" />
       <workItem from="1574846462096" duration="3000" />
       <workItem from="1574846485102" duration="111000" />
-      <workItem from="1575004159565" duration="5601000" />
+      <workItem from="1575004159565" duration="6437000" />
+      <workItem from="1575248258988" duration="12677000" />
     </task>
     <servers />
   </component>

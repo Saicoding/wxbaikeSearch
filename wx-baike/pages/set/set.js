@@ -21,6 +21,19 @@ Page({
 
   },
 
+  Subscribe:function(e){
+
+    wx.requestSubscribeMessage({
+      tmplIds: ['cghFs7Vc5etuAGpDsWLHs2coRiqbWmprV5AnrCLt5iU'],
+      success: res => {
+        console.log(res)
+      },
+      fail: function (res) {
+        console.log(res)
+      }
+    })
+  },
+
   /**
    * 生命周期事件
    */
@@ -44,14 +57,52 @@ Page({
   },
 
   onShow: function() {
+    let self = this;
+
     let user = wx.getStorageSync('user');
 
-    console.log()
+    user.canview = app.globalData.canview;
+
+    if (app.globalData.openid){
+      console.log('haha')
+      app.request({
+        url: 'getView.php',
+        method: 'post',
+        data: {
+          openid: app.globalData.openid
+        },
+        self,
+      }).then(res => {
+        if (res.Data == '注册') { // 第一次访问
+          app.globalData.hasview = 0; //已经访问时间
+          app.globalData.canview = 300; //可以访问时间
+          user.hasview = 0;
+          user.canview = 300;
+
+        } else { // 登录过
+          app.globalData.hasview = res.Data[0].hasview * 1; //已经访问时间
+          app.globalData.canview = res.Data[0].canview * 1;
+          user.hasview = res.Data[0].hasview * 1;
+          user.canview = res.Data[0].canview * 1;
+
+          wx.setStorageSync('user', user)
+        }
+
+        self.setData({
+          user
+        })
+
+      })
+    }
+
+
+
     
     if(user && !this.data.interval){
       console.log('启动定时器')
       let interval = setInterval(()=>{
         user.hasview = app.globalData.hasview;
+        user.canview = app.globalData.canview;
         this.setData({
           user
         })
@@ -59,7 +110,9 @@ Page({
           key: 'user',
           data: user,
         })
+
       },1000)
+
 
       this.setData({
         interval

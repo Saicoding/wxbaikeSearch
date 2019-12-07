@@ -32,7 +32,7 @@ $name = UnicodeEncode($name);
 if(count($objects) ==0){
     $arr = array(
         "openid" => $openid,
-        "canview" => 1800,
+        "canview" => 900,
         "hasview" => 0,
         "cdate" => date("Y-m-d H:i:s")
     );

@@ -11,13 +11,12 @@
     </view>
 
     <view wx:if="{{user}}" style="position:absolute;z-index:2;width:100%;top:30rpx;color:white;">
-      <view class="bw"  style="padding-left:60rpx;height:130rpx;">
+      <view class="bw" style="padding-left:60rpx;height:130rpx;">
         <view style="font-size:35rpx;">Hi，{{user.Name}}你好！</view>
         <view style="font-size:25rpx;">您现在可以试用的时间是：{{user.canview || 0}} 秒</view>
         <view style="font-size:25rpx;">已试用：{{user.hasview}} 秒</view>
       </view>
     </view>
-
   </view>
 </view>
 
@@ -30,6 +29,20 @@
         <image class="item-icon" src="/imgs/right.png"></image>
       </view>
     </sc-view>
+
+    <button open-type="feedback" class="item1">
+      <view class="flex-b ">
+        <view>意见反馈</view>
+        <image class="item-icon" src="/imgs/right.png"></image>
+      </view>
+    </button>
+
+    <!-- <sc-view bindtap="Subscribe" sc-class="item">
+      <view class="flex-b bb">
+        <view>消息订阅</view>
+        <image class="item-icon" src="/imgs/right.png"></image>
+      </view>
+    </sc-view> -->
 
     <sc-view bindtap="GOabout" sc-class="item">
       <view class="flex-b bb">
