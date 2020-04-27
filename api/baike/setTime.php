@@ -3,7 +3,7 @@ header('Content-Type:application/json; charset=utf-8');
 //ini_set("display_errors", "On");
 //error_reporting(E_ALL | E_STRICT);
 //引入数据库类
-require 'mysql.php';
+require '../common/mysql.php';
 
 $openid = $_POST['openid'];
 $hasview = $_POST['hasview'];

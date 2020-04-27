@@ -15,7 +15,7 @@ Page({
     jiaonang: app.globalData.jiaonang,
     params: {
       PageIndex: 0,
-      PageSize: 30
+      PageSize: 50
     },
     num_array: [
       1, 2, 3, 4, 5, 6, 7, 8, 9, 10
@@ -117,7 +117,6 @@ Page({
           },
           self
         }).then(res => {
-          console.log(res)
         })
 
         // 设置计时器
@@ -167,7 +166,6 @@ Page({
               },
               self
             }).then(res => {
-              console.log(res)
             })
           }
 
@@ -273,7 +271,7 @@ Page({
       search: true,
       data: {
         PageIndex: 1,
-        PageSize: 1,
+        PageSize: 50,
         WhereObj: obj
       }
     }).then(res => {
@@ -290,13 +288,12 @@ Page({
         search: true,
         data: {
           PageIndex: 1,
-          PageSize: 1,
+          PageSize: 50,
           WhereObj: obj
         }
       }).then(res => {
         let newest = res.Data[0];
         if (newest.name != self.data.newest.name){
-          console.log(newest)
           self.setData({
             newest
           })
@@ -388,7 +385,7 @@ Page({
       search: true,
       data: {
         PageIndex: 1,
-        PageSize: 100,
+        PageSize: 50,
       }
     }).then(res => {
       let list = res.data.Data;
@@ -461,7 +458,6 @@ Page({
    */
   search: function(params, fresh) {
     let self = this;
-    console.log(params.WhereObj)
     if (!app.globalData.view) {
       this.timeUp();
     } else {
@@ -857,8 +853,6 @@ Page({
     let filterBars = this.data.filterBars;
     let currentIndex = this.data.currentIndex;
     filterBars[currentIndex].BanText = e.detail.value;
-
-    console.log(e.detail.value)
 
     this.setData({
       filterBars

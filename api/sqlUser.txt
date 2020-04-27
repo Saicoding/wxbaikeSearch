@@ -1,1 +1,0 @@
-insert into user ( openid,canview,hasview,cdate,name,sex,avatar,city,province ) values ( "onU2I5BPZcB3664ePZydctJIsISQ","30","0","2019-11-26 03:18:02","&#38518&#20918&#128175","1","https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTJnywjwpeXxRxxzwkfdibfFtCToOIYwo2DgCSeibCY1jcQMHd7KEgnYicwBKVqyRFwIZGZ9tsLHhRxAw/132","Qinhuangdao","Hebei" );

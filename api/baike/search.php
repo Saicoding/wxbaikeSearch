@@ -1,7 +1,7 @@
 <?php
 header('Content-Type:application/json; charset=utf-8');
 //引入数据库类
-require 'mysql.php';
+require '../common/mysql.php';
 
 
 $PageSize = $_POST['PageSize'];

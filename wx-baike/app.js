@@ -180,6 +180,6 @@ App({
     userInfo: null,
     time:0,
     view:true,
-    api: 'https://www.saicoding.club'
+    api: 'https://www.toyer.club/api/baike'
   }
 })

@@ -3,7 +3,7 @@
 class Mysql
 {
     //将PDO对象保存至属性
-    private $pdo;
+    private $con;
     //将表名保存至属性
     private $table;
     //条件属性
@@ -20,27 +20,33 @@ class Mysql
     //构造方法，自动PDO连接数据库
     public function __construct($table)
     {
-        try {
+        // try {
 
             //引入配置文件
             $config = require('config.php');
 
             //连接MySQL数据库
-            $pdo = new PDO('mysql:host='.$config['DB_HOST'].';dbname='.$config['DB_NAME'], $config['DB_USER'], $config['DB_PASS']);
+            // $pdo = new PDO('mysql:host='.$config['DB_HOST'].';dbname='.$config['DB_NAME'], $config['DB_USER'], $config['DB_PASS']);
+            $con = mysqli_connect($config['DB_HOST'],$config['DB_USER'],$config['DB_PASS'],$config['DB_NAME']);
+
+            if (!$con )
+                {
+                    die("连接错误: " . mysqli_connect_error());
+                }
 
             //设置UTF8字符编码
-            $pdo->query('SET NAMES UTF8');
+            $con ->query('SET NAMES UTF8MB4');
 
             //保存PDO对象为属性
-            $this->pdo = $pdo;
+            $this->con = $con;
 
             //保存数据表名
             $this->table = '`'.$table.'`';
 
-        } catch (PDOException $e) {
-            //输出错误信息
-            echo $e->getMessage();
-        }
+        // } catch (PDOException $e) {
+        //     //输出错误信息
+        //     echo $e->getMessage();
+        // }
     }
     //内部自我实例化，静态方法
     public static function mysql($table)
@@ -50,6 +56,7 @@ class Mysql
 
     //给一个数组，数组键名为列，数组值为列值
     public function insertUser($arr){
+   //file_put_contents('user.txt',$sql);
         $keys = '';
         $values = '';
 
@@ -62,13 +69,10 @@ class Mysql
 
         $sql = "insert into user ( $keys ) values ( $values );";
 
-        file_put_contents('sqlUser.txt',$sql);
+        //file_put_contents('sqlUser.txt',$sql);
 
         //得到准备对象
-        $stmt = $this->pdo->prepare($sql);
-
-        //执行SQL语句
-        $stmt->execute();
+        $stmt = $this->query($sql);
     }
 
     public function updateUser($arr,$openid){
@@ -81,13 +85,29 @@ class Mysql
 
         $sql = "update user set ".$set."where openid='".$openid."'";
 
-        file_put_contents('updateUser.txt',$sql);
-
         //得到准备对象
-        $stmt = $this->pdo->prepare($sql);
+        $stmt = $this->query($sql);
+    }
 
-        //执行SQL语句
-        $stmt->execute();
+    //执行sql语句的方法
+    public function query($sql){
+        $res=mysqli_query($this->con,$sql);
+        if(!$res){
+            echo "sql语句执行失败<br>";
+            echo "错误编码是".mysqli_errno($this->con)."<br>";
+            echo "错误信息是".mysqli_error($this->con)."<br>";
+        }
+        return $res;
+    }
+
+    //获取一条记录,前置条件通过资源获取一条记录
+    public function getFormSource($query,$type="assoc"){
+        if(!in_array($type,array("assoc","array","row")))
+        {
+        die("mysqli_query error");
+        }
+        $funcname="mysqli_fetch_".$type;
+        return $funcname($query);
     }
 
     ///多查询方法
@@ -95,28 +115,18 @@ class Mysql
     {
         //重组SQL语句
         $sql = "SELECT $this->fields FROM $this->table $this->where $this->order $this->limit ";
-        file_put_contents("sql.txt",$sql.'\n');
 
         //得到准备对象
-        $stmt = $this->pdo->prepare($sql);
+        $query=$this->query($sql);
+        $list=array();
 
-        //执行SQL语句
-        $stmt->execute();
-
-        //初始化列表对象
-        $objects = [];
-
-        //组装数据列表
-        while ($rows = $stmt->fetchObject()) {
-            $objects[] = $rows;
+        while ($r=$this->getFormSource($query)) {
+            file_put_contents('User.txt',$r);
+         $list[]=$r;
         }
 
-        //将查询的记录数保存到count属性里
-        $this->count = $stmt->rowCount();
 
-        //返回数据对象数组
-        return $objects;
-
+        return $list;
     }
 
     //所有的where条件都在这里

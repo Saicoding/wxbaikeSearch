@@ -1,1 +1,0 @@
-SELECT `*` FROM `user` where openid = 'onU2I5BPZcB3664ePZydctJIsISQ'   \n

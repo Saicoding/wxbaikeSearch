@@ -61,6 +61,8 @@ Page({
 
     let user = wx.getStorageSync('user');
 
+    console.log(user);
+
     user.canview = app.globalData.canview;
 
     if (app.globalData.openid){

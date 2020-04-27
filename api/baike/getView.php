@@ -1,9 +1,9 @@
 <?php
 header('Content-Type:application/json; charset=utf-8');
-//ini_set("display_errors", "On");
-//error_reporting(E_ALL | E_STRICT);
+// ini_set("display_errors", "On");
+// error_reporting(E_ALL | E_STRICT);
 //引入数据库类
-require 'mysql.php';
+require '../common/mysql.php';
 
 $openid = $_POST['openid'];
 $name = $_POST['name'];
@@ -22,12 +22,12 @@ $where = "where openid = '".$openid."'";
 //多选模式
 $objects = $Mysql->fields('*')->where($where)->select();
 
+file_put_contents('test.txt',$objects);
+
 //说明用户不存在,就插入表
-file_put_contents('test.txt',$openid);
+
 
 $res['Data'] = null;
-
-$name = UnicodeEncode($name);
 
 if(count($objects) ==0){
     $arr = array(
@@ -53,6 +53,7 @@ if(count($objects) ==0){
     }else{
         $res['Data'] = $objects;
     }
+
 }
 
 exit(json_encode($res));

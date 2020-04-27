@@ -1,0 +1,1 @@
+SELECT `*` FROM `baike` WHERE STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') > STR_TO_DATE('2019-10-01', '%Y-%m-%d %H:%i') and STR_TO_DATE(ctime, '%Y-%m-%d %H:%i') < STR_TO_DATE('2020-04-27', '%Y-%m-%d %H:%i') ORDER BY `id` DESC LIMIT 0, 50 
