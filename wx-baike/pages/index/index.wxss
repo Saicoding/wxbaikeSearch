@@ -1,13 +1,15 @@
 /**index.wxss**/
+
 @font-face {
 }
 
 page {
+  background: #eef7fe;
 }
 
-.top{
+.top {
   background-color: #10e7c6;
-  padding-top:180rpx;
+  padding-top: 180rpx;
 }
 
 .bar, .item {
@@ -36,18 +38,18 @@ page {
 
 .bar {
   position: absolute;
-  line-height:70rpx;
+  line-height: 70rpx;
   border-top: 1rpx solid white;
   background: #10e7c6;
   height: 0rpx;
   overflow: hidden;
-    transition: all 0.2s ease-in 0s;
+  transition: all 0.2s ease-in 0s;
 }
 
-.bar1{
-  line-height:70rpx;
-  height:70rpx;
-  border-bottom:1rpx solid rgb(230, 230, 230);
+.bar1 {
+  line-height: 70rpx;
+  height: 70rpx;
+  border-bottom: 1rpx solid rgb(230, 230, 230);
 }
 
 /* 横向滚动条 */
@@ -56,53 +58,50 @@ page {
   white-space: nowrap;
 }
 
-.item {
-  height: 70rpx;
-}
-
-.baritem{
-  width:170rpx;
+.baritem {
+  height: 140rpx;
+  width: 170rpx;
   text-align: center;
 }
 
-.flags{
-  width:750rpx;
+.flags {
+  width: 750rpx;
 }
 
-.flag-item,.flag-item1{
+.flag-item, .flag-item1 {
   width: 170rpx;
   height: 70rpx;
   border-radius: 6rpx;
   margin-bottom: 10rpx;
   background: white;
-  color:#333;
+  color: #333;
   float: left;
   font-size: 24rpx;
   text-align: center;
   line-height: 70rpx;
 }
 
-.flag-item1{
-  width:230rpx;
+.flag-item1 {
+  width: 230rpx;
 }
 
-.filter-btn{
-  width:100%;
+.filter-btn {
+  width: 100%;
   position: absolute;
-  bottom:0;
+  bottom: 0;
   text-align: center;
-  font-size:26rpx;
+  font-size: 26rpx;
   line-height: 90rpx;
-  height:90rpx;
+  height: 90rpx;
   background: white;
 }
 
-.confirmbtn{
-  background: linear-gradient(to bottom right,#FF4400,rgb(253, 104, 50))
+.confirmbtn {
+  background: linear-gradient(to bottom right, #f40, rgb(253, 104, 50));
 }
 
-.filter-btn >view{
-  width:376rpx;
+.filter-btn >view {
+  width: 376rpx;
   text-align: center;
 }
 
@@ -112,8 +111,31 @@ page {
   margin-left: 5rpx;
 }
 
-.reset{
-  color:#333;
+.reset {
+  color: #333;
+}
+
+.item-container1 {
+  width: 690rpx;
+  height: 220rpx;
+  margin-left: 30rpx;
+  border-radius: 20rpx;
+  box-shadow: 3rpx 3rpx 20rpx rgba(223, 222, 222, 0.1);
+  margin-top: 20rpx;
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.type {
+  text-align: center;
+  height: 120rpx;
+  font-size: 24rpx;
+  line-height: 120rpx;
+  border-radius: 10rpx;
+  border:1px solid #e6e6e6;
+  margin-left:30rpx;
+  color:white;
+  width:140rpx;
+  background:linear-gradient(to bottom right,rgba(10, 49, 138, 1),rgba(53, 84, 182, 1));
 }
 
 .select1 {

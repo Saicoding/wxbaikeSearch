@@ -97,8 +97,6 @@ Page({
       })
     }
 
-
-
     
     if(user && !this.data.interval){
       console.log('启动定时器')

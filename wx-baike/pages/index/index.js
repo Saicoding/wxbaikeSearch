@@ -5,13 +5,13 @@ let utils = require('../../utils/util.js');
 
 
 const STARTTIME = '2019-10-01'; //默认最大可选起始时间
-const ENDTIME = utils.getCurrentDate1();
+let ENDTIME = utils.getCurrentDate1();
 
 
 Page({
   data: {
-    windowHeight: app.globalData.windowHeight,
-    windowWidth: app.globalData.windowWidth,
+    WH: app.globalData.windowHeight,
+    WW: app.globalData.windowWidth,
     jiaonang: app.globalData.jiaonang,
     params: {
       PageIndex: 0,
@@ -23,10 +23,15 @@ Page({
 
     // 目录
     bars: [{
-        title: '创建时间'
+        title: '创建时间',
+        startDate: '2019-10-01',
+        endDate: ENDTIME
       },
       {
         title: '词条类型'
+      },
+      {
+        title: '编辑次数'
       },
       {
         title: '词条名称'
@@ -43,25 +48,25 @@ Page({
     ],
 
     filterBars: [{
-        index: 2,
+        index: 3,
         prompt: '过滤词条名称,可添加过滤列表和屏蔽列表',
         filterList: [],
         banList: []
       },
       {
-        index: 3,
+        index: 4,
         prompt: '过滤创建用户名称,可添加过滤列表和屏蔽列表',
         filterList: [],
         banList: []
       },
       {
-        index: 4,
+        index: 5,
         prompt: '过滤参考资料名称,可添加过滤列表和屏蔽列表',
         filterList: [],
         banList: []
       },
       {
-        index: 5,
+        index: 6,
         prompt: '过滤修改原因,可添加过滤列表和屏蔽列表',
         filterList: [],
         banList: []
@@ -75,6 +80,7 @@ Page({
     let params = this.data.params; //请求参数
     let flags = utils.flags
     let filterBars = this.data.filterBars;
+    let bars = this.data.bars;
 
     wx.showLoading({
       title: '载入中',
@@ -96,7 +102,7 @@ Page({
         app.globalData.time = 0;
 
         self.setData({
-          loaded:true 
+          loaded: true
         })
 
         if (res.Data == '注册') { // 第一次访问
@@ -116,8 +122,7 @@ Page({
             hasview: app.globalData.hasview
           },
           self
-        }).then(res => {
-        })
+        }).then(res => {})
 
         // 设置计时器
         let interval = setInterval(() => {
@@ -165,8 +170,7 @@ Page({
                 hasview: app.globalData.hasview
               },
               self
-            }).then(res => {
-            })
+            }).then(res => {})
           }
 
         }, 1000)
@@ -175,7 +179,20 @@ Page({
 
         if (app.globalData.hasview < app.globalData.canview) {
           let edit_value = wx.getStorageSync('edit_value');
+
+
+
           let EntryType = wx.getStorageSync('EntryType');
+
+          if (EntryType.length>1){
+            bars[1].sub = EntryType[0]+'等'
+          }
+
+          if (EntryType.length == 1) {
+            bars[1].sub = EntryType[0]
+          }
+
+
           let nameKeys = wx.getStorageSync('nameKeys') || {}; //词条名称过滤列表
           let userKeys = wx.getStorageSync('userKeys') || {}; //词条名称过滤列表
           let referKeys = wx.getStorageSync('referKeys') || {}; //词条名称过滤列表
@@ -235,6 +252,7 @@ Page({
             params.WhereObj.Edit_num = edit_value * 1 + 1;
           }
 
+
           this.setData({
             STARTTIME,
             ENDTIME,
@@ -243,7 +261,8 @@ Page({
             params,
             flags,
             edit_value,
-            filterBars
+            filterBars,
+            bars
           })
 
           let obj = {
@@ -261,10 +280,19 @@ Page({
   },
 
   /**
+   * 起始事件
+   */
+  onReady: function() {
+    utils.getSystemInfo(this)
+  },
+
+  /**
    * 开启定时器
    */
   setInt: function(obj) {
     let self = this;
+    let bars = this.data.bars;
+
     app.request({
       url: 'search.php',
       self,
@@ -276,8 +304,11 @@ Page({
       }
     }).then(res => {
       let newest = res.Data[0];
+      bars[0].endDate = newest.ctime.substring(0,10)
       self.setData({
-        newest
+        newest,
+        bars,
+        ENDTIME: newest.ctime.substring(0, 10)
       })
     })
 
@@ -293,7 +324,7 @@ Page({
         }
       }).then(res => {
         let newest = res.Data[0];
-        if (newest.name != self.data.newest.name){
+        if (newest.name != self.data.newest.name) {
           self.setData({
             newest
           })
@@ -410,7 +441,7 @@ Page({
     let index = res.index;
 
 
-    if (index){
+    if (index) {
       let list = this.data.list;
 
       // 点击的对象
@@ -428,6 +459,7 @@ Page({
         name,
         num
       },
+      test: true,
       method: 'get',
       self,
     }).then(res => {
@@ -526,6 +558,8 @@ Page({
   startDateChange: function(e) {
     let value = e.detail.value;
     let params = this.data.params;
+    let bars = this.data.bars;
+    let item = bars[0];
 
     let StartDate = value + ' 00:00:00'
 
@@ -533,9 +567,11 @@ Page({
     params.PageIndex = 0;
 
     params.WhereObj.StartDate = StartDate;
+    item.startDate = value;
 
     this.setData({
-      startValue: value
+      startValue: value,
+      bars
     })
 
     wx.showLoading({
@@ -550,14 +586,15 @@ Page({
     let value = e.detail.value;
     let params = this.data.params;
     let bars = this.data.bars;
+    let item = bars[0];
+    item.endDate = value;
+
 
     let EndDate = value + ' 00:00:00'
 
     params.PageIndex = 0;
 
     params.WhereObj.EndDate = EndDate;
-
-    bars[0].title = value;
 
     this.setData({
       endValue: value,
@@ -704,7 +741,7 @@ Page({
         item.show = !bars[index].show
         if (item.show) {
           this.setData({
-            currentIndex: cindex
+            currentIndex: cindex-1
           })
         }
       } else {
@@ -725,6 +762,7 @@ Page({
     let flags = this.data.flags; //当前标签列表
     let index = res.index;
     let iindex = res.iindex;
+    let bars = this.data.bars;
 
     for (let i = 0; i < flags.length; i++) {
       let item = flags[i];
@@ -805,6 +843,14 @@ Page({
 
     // 隐藏弹框
     bars[1].show = false;
+    if (selFlagArr.length>1){
+      bars[1].sub = selFlagArr[0]+'等'
+    } else if (selFlagArr.length == 1){
+      bars[1].sub = selFlagArr[0]
+    } else if (!selFlagArr.length){
+      bars[1].sub = '不限'
+    }
+    
 
     this.setData({
       bars
@@ -837,6 +883,8 @@ Page({
    */
   FilterInput: function(e) {
     let filterBars = this.data.filterBars;
+
+
     let currentIndex = this.data.currentIndex;
 
     filterBars[currentIndex].FilterText = e.detail.value;
@@ -905,6 +953,7 @@ Page({
       for (let i = 0; i < filterBars[currentIndex].banList.length; i++) {
         filterBars[currentIndex].banList[i].selected = false;
       }
+
 
       this.setData({
         filterBars
@@ -1085,11 +1134,9 @@ Page({
 
 
     let bars = this.data.bars;
-    bars[index + 2].show = false;
+    bars[index + 3].show = false;
 
-    this.setData({
-      bars
-    })
+
 
     let params = this.data.params
     let FilterList = filterBars[index].filterList || [];
@@ -1098,6 +1145,7 @@ Page({
 
     let selectedFilterList = []; //已选中的过滤列表
     let selectedBanList = []; //已选中的屏蔽列表
+
 
     FilterList.map(item => {
       if (item.selected) {
@@ -1109,6 +1157,18 @@ Page({
       if (item.selected) {
         selectedBanList.push(item.Text)
       }
+    })
+
+    if (selectedFilterList.length > 1) {
+      bars[index + 3].sub = selectedFilterList[0] + '等'
+    } else if (selectedFilterList.length == 1) {
+      bars[index + 3].sub = selectedFilterList[0]
+    } else {
+      bars[index + 3].sub = '不限'
+    }
+
+    this.setData({
+      bars
     })
 
     if (selectedFilterList.length == 0 && selectedBanList.length == 0) { //没有选择任何关键词

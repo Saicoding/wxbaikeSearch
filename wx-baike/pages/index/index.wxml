@@ -1,8 +1,8 @@
 <!--index.wxml-->
-<view style="position:fixed;top:0rpx;height:180rpx;width:100%;z-index:100;">
+<view style="position:fixed;top:0;height:180rpx;width:100%;z-index:100;">
   <image src="/imgs/bg1.png" style="height:180rpx;width:100%;position:absolute;top:0;"></image>
-  <view style="top:90rpx;height:50rpx;line-height:50rpx;color:white;font-size:28rpx;width:100%;text-align:center;position:absolute;z-index:101;">baike {{newest.flag?'·':''}} {{newest.flag}}</view>
-  <view data-num="{{newest.num}}" data-name="{{newest.name}}" bindtap="GOurl" class="overline" style="position:absolute;top:100rpx;left:220rpx;width:320rpx;color:white;font-size:24rpx;height:100rpx;line-height:100rpx;text-align:center;">{{newest.name}}</view>
+  <view style="top:90rpx;height:50rpx;line-height:50rpx;color:white;font-size:28rpx;width:100%;text-align:center;position:absolute;z-index:101;"></view>
+  <view class="c overline" style="width:{{jiaonang.left}}px;position:absolute;height:{{jiaonang.height}}px;line-height:{{jiaonang.height}}px;top:{{jiaonang.top}}px;font-size:28rpx;color:white;">最新百科：{{newest.name}}</view>
 </view>
 
 
@@ -10,19 +10,41 @@
 <view class="container">
   <!-- 筛选条件框 -->
   <view class="filter" style="top:180rpx;">
-    <scroll-view enable-flex scroll-x class="flex f28 scroll" style="height:70rpx;line-height:70rpx;">
-      <view class="scroll-items" style="display:flex;flex-direction:row;">
-        <sc-view data-cindex="{{index-2}}" data-index="{{index}}" sc-class="item baritem" wx:for="{{bars}}" wx:key="k" bindtap="toogleShowBar">
-          <view class="flex-c vc">
-            <view>{{item.title}}</view>
-            <image class="bar-icon" src="{{item.show?'/imgs/triangle1.png':'/imgs/triangle.png'}}"></image>
+    <scroll-view enable-flex scroll-x class="flex f28 scroll" style="height:140rpx;">
+      <view style="display:flex;flex-direction:row;">
+        <sc-view wx:for="{{bars}}" wx:key="k">
+          <view data-cindex="{{index-2}}" data-index="{{index}}" bindtap="toogleShowBar" wx:if="{{index !=2}}" class="baritem">
+            <view class="flex-c vc">
+              <view style="height:70rpx;line-height:70rpx;">{{item.title}}</view>
+              <image class="bar-icon" src="{{item.show?'/imgs/triangle1.png':'/imgs/triangle.png'}}"></image>
+            </view>
+
+            <view wx:if="{{index ==0}}" class="ba f20 box c" style="width:170rpx;height:70rpx;">
+              <view>起始:{{item.startDate}}</view>
+              <view>结束:{{item.endDate}}</view>
+            </view>
+
+            <view class="f24" wx:else style="width:170rpx;height:70rpx;line-height:70rpx;">
+              {{item.sub || '不限'}}
+            </view>
           </view>
+
+
+          <picker bindchange="editNumChange" value="{{edit_value}}" range="{{num_array}}" wx:else style="width:170rpx;height:140rpx;padding:0;">
+            <view class="flex-c vc" style="width:170rpx;height:70rpx;">
+              <view >编辑次数</view>
+              <image class="bar-icon" src="{{item.show?'/imgs/triangle1.png':'/imgs/triangle.png'}}"></image>
+            </view>
+            <view class="c f24" style="width:170rpx;height:70rpx;line-height:70rpx;">
+               {{edit_value*1?edit_value*1+1:1}}次以上
+            </view>
+          </picker>
         </sc-view>
       </view>
     </scroll-view>
 
     <!-- 创建时间 -->
-    <view data-index="0" catchtap="toogleShowBar" style="background:rgba(139, 139, 139,0);height:{{bars[0].show?windowHeight-70:0}}rpx" catchtouchmove="undo" class="bar f28">
+    <view data-index="0" catchtap="toogleShowBar" style="background:rgba(139, 139, 139,0);height:{{bars[0].show?WH-70:0}}rpx" catchtouchmove="undo" class="bar f28">
       <view style="background:#10e7c6;width:750rpx;">
         <!-- 起始查询时间 -->
         <view class="c f22" style="height:70rpx;line-height:70rpx;">点击时间选项可过滤起始时间和结束时间内创建的词条</view>
@@ -46,9 +68,9 @@
     </view>
 
     <!-- 词条类型 -->
-    <view class="bar f28" style="height:{{bars[1].show?windowHeight-250:0}}rpx;">
+    <view class="bar f28" style="height:{{bars[1].show?WH-320:0}}rpx;">
       <view style="position:relative;">
-        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;height:{{windowHeight-250}}rpx;">
+        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;height:{{WH-320}}rpx;">
           <!-- 起始查询时间 -->
           <view class="c f22" style="height:70rpx;line-height:70rpx;">过滤词条类型,可多选</view>
           <view class="flags">
@@ -76,9 +98,9 @@
 
     <!-- 过滤与屏蔽 -->
 
-    <view data-cindex="{{index}}" data-index="{{item.index}}" wx:for="{{filterBars}}" wx:key="i" catchtap="toogleShowBar" class="bar f28" style="height:{{bars[item.index].show?windowHeight-250:0}}rpx;background:rgba(255, 255, 255,0);" catchtouchmove="undo">
+    <view data-cindex="{{index}}" data-index="{{item.index}}" wx:for="{{filterBars}}" wx:key="i" catchtap="toogleShowBar" class="bar f28" style="height:{{bars[item.index].show?WH-320:0}}rpx;background:rgba(255, 255, 255,0);" catchtouchmove="undo">
       <view catchtap="undo" style="position:relative;z-index:100">
-        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;max-height:{{windowHeight-70}}rpx;background:#10e7c6;">
+        <scroll-view scroll-y style="padding-left:20rpx;padding-right:20rpx;max-height:{{WH-70}}rpx;background:#10e7c6;">
           <view class="c f22" style="height:70rpx;line-height:70rpx;">{{item.prompt}}</view>
 
           <!-- 过滤列表 -->
@@ -125,35 +147,27 @@
 
   </view>
 
-  <view style="height:250rpx;"></view>
+  <view style="height:320rpx;"></view>
 
-  <view enable-flex class="flex-b f26 b bar1">
-    <view style="width:340rpx;padding-left:30rpx;">词条名称</view>
-    <view class="flex" style="width:380rpx;">
-      <view style="width:150rpx;">创建者</view>
-      <view class="c" style="width:150rpx;">时间</view>
-      <view class="c" style="width:105rpx;">
-        <picker value="{{edit_value}}" range="{{num_array}}" bindchange="editNumChange">
-          <view class="flex vc">
-            <view class="c">
-              次数{{edit_value*1+1 || 0}}
-            </view>
-            <image style="width:20rpx;height:20rpx;margin-top:5rpx;" src="/imgs/down.png"></image>
+  <sc-view data-name="{{item.name}}" data-index="{{index}}" data-num="{{item.num}}" bindtap="GOurl" sc-class="item-container1" wx:for="{{list}}" wx:key="i">
+    <!-- 词条名称 -->
+    <view class="f28 box b overline" style="color:#101310;width:660rpx;padding-left:30rpx;padding-right:30rpx;margin-top:20rpx;">{{item.name}}</view>
+    <!-- 词条类型 -->
+    <view class="flex" style="margin-top:20rpx;">
+      <view class="type box overline">{{item.flag}}</view>
+      <!-- 右侧部分 -->
+      <view class="bw f24 c1 box" style="width:490rpx;height:120rpx;padding-left:20rpx;padding-right:20rpx;">
+        <view>
+          <view class="flex-b" style="width:490rpx;">
+            <view>创建者:{{item.cname}}</view>
+            <view>已编辑:
+              <span class="b" style="color:{{item.edit_num>1?'#ff4400':'#333'}};font-size:28rpx;"> {{item.edit_num}} </span>次</view>
           </view>
-        </picker>
-      </view>
-    </view>
-  </view>
+        </view>
+        <view class="overline" style="width:490rpx;">修改原因：{{item.ereson}}</view>
 
-  <sc-view sc-class="flex item-container f24 bc" wx:for="{{list}}" wx:key="i">
-    <image data-click="true" data-index="{{index}}" data-num="{{item.num}}" wx:if="{{item.mark}}" bindtap="toogleMark" style="width:50rpx;height:50rpx;position:absolute;top:0rpx;left:0rpx;" src="/imgs/mark.png"></image>
-    <!-- <image wx:if="{{item.mark}}" src="/imgs/star-gold.png" style="width:30rpx;height:30rpx;"></image>
-    <view wx:else style="width:30rpx;height:80rpx;"></view> -->
-    <view data-index="{{index}}" class="item overline" style="color:{{item.view?'red':'#333'}};" bindtap="GOurl" catchlongpress="toogleMark" data-num="{{item.num}}" data-name="{{item.name}}">{{item.name}}</view>
-    <view data-index="{{index}}" data-num="{{item.num}}" bindtap="showLayer" class="flex vc hc" style="height:80rpx;width:380rpx;">
-      <view class="overline" style="width:150rpx;">{{item.cname}}</view>
-      <view class="c" style="width:150rpx;">{{item.shortTime}}</view>
-      <view class="c" style="width:80rpx;">{{item.edit_num}}</view>
+        <view>时间:{{item.ctime}}~{{item.etime}}</view>
+      </view>
     </view>
   </sc-view>
 </view>
@@ -173,4 +187,4 @@
 <!-- 没有更多 -->
 <view class="hasNoMore c" wx:if="{{hasNoMore}}">已全部加载完毕</view>
 
-<layer id="layer" show="{{showLayer}}" item="{{item}}" windowHeight="{{windowHeight}}"></layer>
+<layer id="layer" show="{{showLayer}}" item="{{item}}" WH="{{WH}}"></layer>

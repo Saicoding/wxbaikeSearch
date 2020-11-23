@@ -538,11 +538,66 @@ function setTypeSelect(flags, arr, params){
   }
 }
 
+/**
+ * 获取设备信息
+ */
+function getSystemInfo(self) {
+  wx.getSystemInfo({ //得到窗口高度,这里必须要用到异步,而且要等到窗口bar显示后再去获取,所以要在onReady周期函数中使用获取窗口高度方法
+    success: function (res) { //转换窗口高度
+      let WH = res.windowHeight;
+      let SH = res.screenHeight;
+
+      let WHPX = WH;
+      let SHPX = SH;
+      let WW = res.windowWidth;
+
+      let platform = res.platform;
+      // platform = 'ios'
+
+      WH = (WH * (750 / WW));
+      SH = (SH * (750 / WW));
+
+      self.setData({
+        WH,
+        SH,
+        WHPX,
+        SHPX,
+        WW,
+        platform
+      })
+    }
+  });
+
+  //最上面标题栏不同机型的高度不一样(单位PX)
+
+  let jiaonang = {
+    top: 50,
+    height: 32,
+    width: 80,
+    bottom: 82,
+    left: 315
+  }; //胶囊位置及尺寸
+
+
+  try {
+    if (wx.canIUse('getMenuButtonBoundingClientRect')) {
+      jiaonang = wx.getMenuButtonBoundingClientRect();
+    }
+  } catch (err) {
+    console.log('获取胶囊失败,取默认值')
+  }
+
+  self.setData({
+    jiaonang
+  })
+}
+
 
 
 module.exports = {
   getCurrentDate,
   getCurrentDate1,
   flags,
+  getSystemInfo,
   setTypeSelect
 }
